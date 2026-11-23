@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Quest to the Cap: 8-Bit RPG Graduation Countdown Lock Screen</title>
   
-  <!-- Open Graph / Meta -->
-  <meta name="description" content="Working backward from graduation day: reverse milestones, 8-bit chiptune audio, and instant wallpaper export. Built for Handshake × Google AI Skills Studio.">
+  <meta name="description" content="Working backward from graduation day: an 8-bit retro RPG countdown lock screen with XP progress and instant wallpaper export.">
   <meta property="og:title" content="Quest to the Cap: 8-Bit RPG Graduation Countdown Lock Screen">
-  <meta property="og:description" content="Working backward from graduation day: reverse milestones, 8-bit chiptune audio, and instant wallpaper export.">
+  <meta property="og:description" content="Working backward from graduation day: an 8-bit retro RPG countdown lock screen with XP progress and instant wallpaper export.">
   <meta property="og:image" content="https://daggerstuff.github.io/quest-to-the-cap/assets/quest_to_the_cap_showcase.jpg">
   <meta property="og:url" content="https://daggerstuff.github.io/quest-to-the-cap/">
   <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +19,6 @@
   <style>
     :root {
       --bg: #11162c;
-      --bg-dark: #0a0d1a;
       --surface: #242044;
       --surface-warm: #35275b;
       --surface-card: #19172f;
@@ -31,8 +29,6 @@
       --gold-border: #d9a256;
       --grass: #65d9b1;
       --sky: #5fe0db;
-      --rose: #ff9cc2;
-      --plum: #cf6aa6;
       --font-pixel: "Press Start 2P", monospace;
       --font-mono: "VT323", monospace;
     }
@@ -46,7 +42,7 @@
     }
 
     body {
-      background: radial-gradient(circle at 50% 15%, #1d1742 0%, #080b18 100%);
+      background: radial-gradient(circle at 50% 15%, #1d1742 0%, #070914 100%);
       color: var(--fg);
       font-family: var(--font-pixel);
       min-height: 100vh;
@@ -54,22 +50,22 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 12px 40px;
+      padding: 24px 12px 32px;
       overflow-x: hidden;
     }
 
-    /* Top Showcase Bar */
+    /* Minimalist Showcase Header */
     .showcase-header {
       text-align: center;
       margin-bottom: 20px;
-      max-width: 640px;
+      max-width: 580px;
     }
     .badge-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 212, 108, 0.12);
-      border: 1px solid var(--gold);
+      background: rgba(255, 212, 108, 0.1);
+      border: 1px solid rgba(255, 212, 108, 0.4);
       color: var(--gold);
       padding: 6px 14px;
       font-size: 8px;
@@ -77,14 +73,13 @@
       border-radius: 4px;
       margin-bottom: 12px;
       text-transform: uppercase;
-      box-shadow: 0 0 12px rgba(255, 212, 108, 0.2);
     }
     .showcase-title {
-      font-size: 20px;
+      font-size: 18px;
       color: #ffffff;
-      text-shadow: 2px 2px 0 var(--gold-deep), 0 0 20px rgba(255, 212, 108, 0.3);
+      text-shadow: 2px 2px 0 var(--gold-deep), 0 0 16px rgba(255, 212, 108, 0.25);
       line-height: 1.4;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .showcase-subtitle {
       font-size: 9px;
@@ -92,25 +87,24 @@
       line-height: 1.6;
     }
 
-    /* Device Mockup Stage */
+    /* Phone Device Stage */
     .device-stage {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      perspective: 1000px;
     }
 
     .phone-wrapper {
       position: relative;
       width: 380px;
-      height: 780px;
+      height: 760px;
       background: var(--bg);
-      border-radius: 46px;
-      border: 12px solid #28243d;
+      border-radius: 44px;
+      border: 10px solid #28243d;
       box-shadow: 
         0 0 0 2px #443c68,
-        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 25px 70px rgba(0, 0, 0, 0.85),
         inset 0 0 15px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
@@ -118,55 +112,40 @@
       transition: all 0.3s ease;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 440px) {
       body {
-        padding: 10px 4px 30px;
+        padding: 12px 6px 24px;
       }
       .phone-wrapper {
         width: 100%;
-        max-width: 360px;
-        height: 740px;
+        max-width: 350px;
+        height: 720px;
         border-width: 8px;
         border-radius: 36px;
       }
       .showcase-title {
-        font-size: 16px;
+        font-size: 15px;
       }
     }
 
-    /* Dynamic Island */
-    .dynamic-island {
+    /* Subtle Notch */
+    .notch {
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 110px;
-      height: 24px;
+      width: 100px;
+      height: 20px;
       background: #000000;
-      border-radius: 16px;
+      border-radius: 12px;
       z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 10px;
-      font-size: 7px;
-      color: var(--gold);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
-      transition: width 0.3s ease;
-    }
-    .island-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #1a1a2e;
-      border: 1px solid #333;
     }
 
-    /* Scanline Overlay */
+    /* Scanline overlay */
     .crt-overlay {
       position: absolute;
       top: 0; left: 0; bottom: 0; right: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.28) 50%);
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
       background-size: 100% 4px;
       pointer-events: none;
       z-index: 15;
@@ -180,12 +159,12 @@
       z-index: 1;
     }
 
-    /* Status Bar */
+    /* Phone Status Bar */
     .status-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 24px 6px;
+      padding: 16px 24px 4px;
       font-size: 8px;
       color: var(--muted);
       z-index: 10;
@@ -221,7 +200,7 @@
     /* Clock & Date */
     .lock-header {
       text-align: center;
-      padding: 12px 16px 6px;
+      padding: 16px 16px 6px;
       z-index: 10;
     }
     .lock-date {
@@ -232,45 +211,20 @@
       margin-bottom: 4px;
     }
     .lock-time {
-      font-size: 46px;
+      font-size: 48px;
       color: #ffffff;
       text-shadow: 3px 3px 0 #070914;
       line-height: 1;
       letter-spacing: -1px;
     }
 
-    /* Mode Switcher Tabs */
-    .view-pills {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin: 8px 16px;
-      z-index: 10;
-    }
-    .view-pill {
-      background: #16142a;
-      border: 1px solid #3c3461;
-      color: var(--muted);
-      font-size: 7px;
-      padding: 6px 9px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .view-pill.active {
-      background: var(--surface-warm);
-      border-color: var(--gold);
-      color: var(--gold);
-      box-shadow: 0 0 10px rgba(255, 212, 108, 0.35);
-    }
-
-    /* RPG Frame Box */
+    /* Central RPG Frame */
     .rpg-box {
-      margin: 4px 16px 8px;
+      margin: 12px 18px 10px;
       background: var(--surface);
       border: 4px solid var(--gold-border);
       box-shadow: 0 0 0 2px #0b1025, 4px 4px 0 #080b1b;
-      padding: 12px 10px;
+      padding: 14px 12px;
       z-index: 10;
       position: relative;
     }
@@ -287,7 +241,7 @@
       color: var(--gold);
       text-align: center;
       letter-spacing: 1px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -298,20 +252,19 @@
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 5px;
+      gap: 6px;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .countdown-unit {
       background: var(--surface-card);
       border: 2px solid var(--gold-deep);
-      padding: 6px 2px;
+      padding: 8px 2px;
       position: relative;
-      overflow: hidden;
     }
     .countdown-num {
       font-family: var(--font-mono);
-      font-size: 28px;
+      font-size: 30px;
       color: #ffffff;
       line-height: 1;
       text-shadow: 2px 2px 0 #000;
@@ -323,9 +276,14 @@
       letter-spacing: 0.5px;
     }
 
-    /* XP Progress Bar */
+    /* Interactive XP Bar */
     .progress-section {
       margin-top: 8px;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .progress-section:active {
+      transform: scale(0.98);
     }
     .progress-header {
       display: flex;
@@ -348,22 +306,11 @@
       width: 75%;
       box-shadow: inset 0 2px 0 rgba(255,255,255,0.5);
       transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-      position: relative;
-    }
-    .bar-sheen {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
-      animation: sheen 3s infinite;
-    }
-    @keyframes sheen {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(200%); }
     }
 
-    /* Active Gate / Milestone */
+    /* Active Gate Pill */
     .quest-gate {
-      margin: 4px 16px 0;
+      margin: 4px 18px 0;
       background: var(--surface-card);
       border-left: 4px solid var(--sky);
       border-top: 1px solid #2b254d;
@@ -392,20 +339,20 @@
       margin-top: auto;
       display: flex;
       align-items: flex-end;
-      padding: 0 16px 14px;
+      padding: 0 18px 16px;
       z-index: 10;
       gap: 10px;
     }
 
     .mascot-art {
-      width: 74px;
-      height: 74px;
+      width: 76px;
+      height: 76px;
       flex-shrink: 0;
       cursor: pointer;
       transition: transform 0.15s;
     }
     .mascot-art:active {
-      transform: scale(0.92) rotate(-3deg);
+      transform: scale(0.9) rotate(-4deg);
     }
 
     .dialogue-bubble {
@@ -439,118 +386,47 @@
       border-color: transparent #11162c transparent transparent;
     }
 
-    /* Unlock Prompt */
+    /* Bottom Prompt */
     .unlock-prompt {
       text-align: center;
       font-size: 7px;
       color: var(--muted);
-      padding-bottom: 12px;
+      padding-bottom: 14px;
       letter-spacing: 1px;
-      animation: pulse 1.8s infinite;
+      animation: pulse 2s infinite;
       z-index: 10;
     }
     @keyframes pulse {
-      0%, 100% { opacity: 0.5; transform: translateY(0); }
-      50% { opacity: 1; transform: translateY(-2px); }
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
     }
 
-    /* Live Activity Focus State */
-    .focus-card-overlay {
-      display: none;
-      margin: 10px 16px;
-      background: #19172f;
-      border: 3px solid var(--sky);
-      box-shadow: 0 0 16px rgba(95, 224, 219, 0.35);
-      padding: 14px;
-      z-index: 10;
-    }
-    .focus-ring-wrap {
+    /* Minimalist Action Controls */
+    .action-bar {
+      margin-top: 20px;
       display: flex;
-      align-items: center;
-      justify-content: space-around;
-      margin: 10px 0;
-    }
-    .focus-timer-digits {
-      font-family: var(--font-mono);
-      font-size: 34px;
-      color: var(--sky);
-      text-shadow: 0 0 10px rgba(95, 224, 219, 0.6);
-    }
-
-    /* Reverse Roadmap Drawer */
-    .roadmap-drawer {
-      display: none;
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 72%;
-      background: #1b1735;
-      border-top: 4px solid var(--gold);
-      border-radius: 24px 24px 0 0;
-      z-index: 30;
-      padding: 16px;
-      box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
-      overflow-y: auto;
-    }
-    .roadmap-drawer.open {
-      display: block;
-      animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    @keyframes slideUp {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
-    }
-    .gate-step {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 12px;
-      font-size: 8px;
-      padding-bottom: 10px;
-      border-bottom: 1px dashed #3a325e;
-    }
-    .gate-icon {
-      font-size: 14px;
-    }
-
-    /* Interactive Control Deck */
-    .deck-container {
-      margin-top: 24px;
-      width: 100%;
-      max-width: 540px;
-      display: flex;
-      flex-direction: column;
       gap: 12px;
-    }
-    .deck-title {
-      font-size: 9px;
-      color: var(--gold);
-      letter-spacing: 1px;
-      text-align: center;
-      margin-bottom: 2px;
-    }
-    .btn-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
     }
     .btn {
       background: var(--surface);
       color: var(--gold);
       border: 2px solid var(--gold);
-      padding: 8px 12px;
+      padding: 10px 16px;
       font-family: var(--font-pixel);
-      font-size: 8px;
+      font-size: 9px;
       cursor: pointer;
       box-shadow: 3px 3px 0 #000;
-      transition: all 0.1s;
+      transition: all 0.12s;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      text-decoration: none;
+      gap: 8px;
     }
     .btn:hover {
       background: var(--surface-warm);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       box-shadow: 4px 4px 0 #000;
     }
     .btn:active {
@@ -567,50 +443,39 @@
       background: #ffe08f;
     }
 
-    /* Footer Credits */
-    .footer-links {
-      margin-top: 28px;
-      text-align: center;
+    .footer-note {
+      margin-top: 24px;
       font-size: 8px;
       color: var(--muted);
-      line-height: 1.8;
+      text-align: center;
+      line-height: 1.6;
     }
-    .footer-links a {
+    .footer-note a {
       color: var(--gold);
       text-decoration: none;
-      margin: 0 6px;
     }
-    .footer-links a:hover {
+    .footer-note a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Showcase Banner -->
+  <!-- Minimalist Title -->
   <div class="showcase-header">
-    <div class="badge-pill">★ Handshake × Google AI Skills Studio Showcase ★</div>
-    <h1 class="showcase-title">Quest to the Cap: 8-Bit Lock Screen</h1>
-    <p class="showcase-subtitle">Working backward from graduation day: reverse milestones, 8-bit chiptune audio, and instant wallpaper export.</p>
+    <div class="badge-pill">★ Handshake × Google AI Skills Studio ★</div>
+    <h1 class="showcase-title">Quest to the Cap</h1>
+    <p class="showcase-subtitle">Working backward from graduation day: glanceable 8-bit countdown, XP progress, and instant wallpaper export.</p>
   </div>
 
   <!-- Mobile Phone Mockup Device -->
   <div class="device-stage">
     <div class="phone-wrapper" id="phone">
-      <!-- Dynamic Island -->
-      <div class="dynamic-island" id="island">
-        <span class="island-dot"></span>
-        <span id="island-text">🎓 T-142D</span>
-        <span class="island-dot"></span>
-      </div>
-
-      <!-- Scanline Overlay -->
-      <div class="crt-overlay" id="crt"></div>
-
-      <!-- Canvas Starfield & Confetti -->
+      <div class="notch"></div>
+      <div class="crt-overlay"></div>
       <canvas id="stars-canvas"></canvas>
 
-      <!-- Status Bar -->
+      <!-- Phone Status Bar -->
       <div class="status-bar">
         <span>QUEST-OS</span>
         <span id="live-time">09:41</span>
@@ -626,77 +491,52 @@
         <div class="lock-time" id="big-time">09:41</div>
       </div>
 
-      <!-- View Switcher Tabs -->
-      <div class="view-pills">
-        <div class="view-pill active" onclick="switchMode('countdown', this)">⚔️ Quest Timer</div>
-        <div class="view-pill" onclick="switchMode('focus', this)">⏳ Live Focus</div>
-        <div class="view-pill" onclick="switchMode('roadmap', this)">🗺️ Reverse Path</div>
-      </div>
-
-      <!-- MAIN COUNTDOWN STATE -->
-      <div id="countdown-view">
-        <div class="rpg-box">
-          <div class="box-title">★ FINAL BOSS: GRADUATION DAY ★</div>
-          <div class="countdown-grid">
-            <div class="countdown-unit">
-              <div class="countdown-num" id="cd-days">142</div>
-              <div class="countdown-label">DAYS</div>
-            </div>
-            <div class="countdown-unit">
-              <div class="countdown-num" id="cd-hours">08</div>
-              <div class="countdown-label">HOURS</div>
-            </div>
-            <div class="countdown-unit">
-              <div class="countdown-num" id="cd-mins">24</div>
-              <div class="countdown-label">MINS</div>
-            </div>
-            <div class="countdown-unit">
-              <div class="countdown-num" id="cd-secs">12</div>
-              <div class="countdown-label">SECS</div>
-            </div>
+      <!-- Ornate Retro Frame Box -->
+      <div class="rpg-box">
+        <div class="box-title">★ FINAL BOSS: GRADUATION DAY ★</div>
+        <div class="countdown-grid">
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-days">142</div>
+            <div class="countdown-label">DAYS</div>
           </div>
-
-          <!-- XP / Credit Progress -->
-          <div class="progress-section">
-            <div class="progress-header">
-              <span>CREDITS: <strong id="credit-count" style="color:var(--gold);">18 / 24</strong></span>
-              <span style="color:var(--grass);" id="percent-label">75% • LVL 18</span>
-            </div>
-            <div class="bar-outer">
-              <div class="bar-inner" id="xp-bar" style="width: 75%;">
-                <div class="bar-sheen"></div>
-              </div>
-            </div>
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-hours">08</div>
+            <div class="countdown-label">HOURS</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-mins">24</div>
+            <div class="countdown-label">MINS</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-secs">12</div>
+            <div class="countdown-label">SECS</div>
           </div>
         </div>
 
-        <!-- Active Gate / Milestone -->
-        <div class="quest-gate">
-          <div class="quest-gate-tag">
-            <span>ACTIVE GATE [2/4]</span>
-            <span style="color:var(--gold);">T - 142 DAYS</span>
+        <!-- Interactive XP / Credit Progress -->
+        <div class="progress-section" onclick="addCredit()" title="Click to log credit!">
+          <div class="progress-header">
+            <span>CREDITS: <strong id="credit-count" style="color:var(--gold);">18 / 24</strong></span>
+            <span style="color:var(--grass);" id="percent-label">75% • LVL 18</span>
           </div>
-          <div class="quest-gate-name">⚔️ Complete Module 4: Calculus Capstone</div>
+          <div class="bar-outer">
+            <div class="bar-inner" id="xp-bar" style="width: 75%;"></div>
+          </div>
         </div>
       </div>
 
-      <!-- FOCUS ACTIVITY STATE (Dynamic Island / Live Activity) -->
-      <div class="focus-card-overlay" id="focus-view">
-        <div class="quest-gate-tag" style="color:var(--sky); margin-bottom: 6px;">
-          <span>LIVE ACTIVITY • STUDY FOCUS</span>
-          <span style="color:var(--grass);">+100 XP / 25M</span>
+      <!-- Active Gate Milestone -->
+      <div class="quest-gate">
+        <div class="quest-gate-tag">
+          <span>ACTIVE GATE [2/4]</span>
+          <span style="color:var(--gold);">T - 142 DAYS</span>
         </div>
-        <div class="focus-ring-wrap">
-          <div class="focus-timer-digits" id="focus-digits">24:45</div>
-        </div>
-        <div style="font-size:7px; color:var(--muted); text-align:center;">
-          Lock screen widgets prevent context switching & notification distractions.
-        </div>
+        <div class="quest-gate-name">⚔️ Complete Module 4: Calculus Capstone</div>
       </div>
 
       <!-- Mascot Ellie Section -->
       <div class="mascot-area">
-        <svg class="mascot-art" id="ellie-svg" onclick="pokeEllie()" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="mascot-art" id="ellie-svg" onclick="pokeEllie()" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" title="Click Ellie!">
           <polygon points="32,4 12,14 32,22 52,14" fill="#11162c" stroke="#ffd46c" stroke-width="2"/>
           <line x1="32" y1="18" x2="48" y2="24" stroke="#ffd46c" stroke-width="2"/>
           <rect x="47" y="24" width="4" height="6" fill="#ffd46c"/>
@@ -724,70 +564,23 @@
       </div>
 
       <!-- Bottom Swipe Prompt -->
-      <div class="unlock-prompt" id="unlock-text">▲ SWIPE UP TO ENTER QUEST ▲</div>
-
-      <!-- ROADMAP DRAWER -->
-      <div class="roadmap-drawer" id="roadmap-drawer">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <span style="font-size:9px; color:var(--gold);">REVERSE MILESTONE GATES</span>
-          <button class="btn" style="padding:4px 8px; font-size:7px;" onclick="closeRoadmap()">✕ CLOSE</button>
-        </div>
-
-        <div class="gate-step" style="opacity:0.6;">
-          <div class="gate-icon">✅</div>
-          <div>
-            <div style="color:var(--grass);">GATE 1: FOUNDATION MODULES</div>
-            <div style="color:var(--muted); font-size:7px;">Completed 12 Credits • Core Curriculum</div>
-          </div>
-        </div>
-
-        <div class="gate-step" style="border-left: 3px solid var(--sky); padding-left: 6px;">
-          <div class="gate-icon">⚔️</div>
-          <div>
-            <div style="color:var(--sky);">GATE 2: ADVANCED ELECTIVES (NOW)</div>
-            <div style="color:#fff; font-size:7px;">6 Credits in progress • Target: 18 Credits</div>
-          </div>
-        </div>
-
-        <div class="gate-step">
-          <div class="gate-icon">🛡️</div>
-          <div>
-            <div style="color:var(--gold);">GATE 3: CAPSTONE DEFENSE (T-60D)</div>
-            <div style="color:var(--muted); font-size:7px;">Final Project Verification & Review</div>
-          </div>
-        </div>
-
-        <div class="gate-step">
-          <div class="gate-icon">🎓</div>
-          <div>
-            <div style="color:var(--rose);">GATE 4: GRADUATION DAY (T-0D)</div>
-            <div style="color:var(--muted); font-size:7px;">24/24 Credits Earned • Diploma Conferred</div>
-          </div>
-        </div>
-      </div>
+      <div class="unlock-prompt">▲ SWIPE UP TO ENTER QUEST ▲</div>
     </div>
   </div>
 
-  <!-- Interactive Control Deck -->
-  <div class="deck-container">
-    <div class="deck-title">INTERACTIVE MISSION TEST DECK</div>
-    <div class="btn-row">
-      <button class="btn primary" onclick="exportWallpaper()">📸 Export 1080x1920 Wallpaper</button>
-      <button class="btn" onclick="addCredit()">⭐ +1 Credit Earned</button>
-      <button class="btn" onclick="toggleAudio()" id="audio-btn">🔊 8-Bit Audio: ON</button>
-      <button class="btn" onclick="toggleCRT()">📺 CRT FX</button>
-      <button class="btn" onclick="triggerGraduationVictory()">🎉 Graduation Blast</button>
-      <a class="btn" href="https://github.com/daggerstuff/quest-to-the-cap" target="_blank" rel="noopener">📂 View on GitHub</a>
-    </div>
+  <!-- Clean, Minimal Action Controls -->
+  <div class="action-bar">
+    <button class="btn primary" onclick="exportWallpaper()">📸 Save Wallpaper (1080×1920)</button>
+    <button class="btn" onclick="toggleAudio()" id="audio-btn">🔊 Sound</button>
+    <a class="btn" href="https://github.com/daggerstuff/quest-to-the-cap" target="_blank" rel="noopener">📂 GitHub</a>
   </div>
 
-  <div class="footer-links">
-    <div>Created for the <strong>Handshake × Google AI Skills Studio</strong> Mission Challenge</div>
-    <div>Co-Designed with Google Gemini • Open Source MIT License</div>
+  <div class="footer-note">
+    Built for the Handshake AI Skills Studio Challenge • Co-designed with Google Gemini
   </div>
 
   <script>
-    // --- 1. WEB AUDIO 8-BIT SYNTHESIZER ---
+    // --- 1. PROCEDURAL 8-BIT AUDIO SYNTHESIZER ---
     let audioCtx = null;
     let audioEnabled = true;
 
@@ -820,7 +613,7 @@
     }
 
     function soundClick() {
-      playBeep(440, 0.04, 'triangle', 0.06);
+      playBeep(523.25, 0.05, 'triangle', 0.06);
     }
 
     function soundFanfare() {
@@ -832,7 +625,7 @@
 
     function toggleAudio() {
       audioEnabled = !audioEnabled;
-      document.getElementById('audio-btn').innerText = audioEnabled ? '🔊 8-Bit Audio: ON' : '🔇 8-Bit Audio: OFF';
+      document.getElementById('audio-btn').innerText = audioEnabled ? '🔊 Sound' : '🔇 Muted';
       if (audioEnabled) soundClick();
     }
 
@@ -866,7 +659,6 @@
         document.getElementById('cd-hours').innerText = String(h).padStart(2, '0');
         document.getElementById('cd-mins').innerText = String(m).padStart(2, '0');
         document.getElementById('cd-secs').innerText = String(s).padStart(2, '0');
-        document.getElementById('island-text').innerText = `🎓 T-${d}D`;
       }
     }
     setInterval(updateClock, 1000);
@@ -875,11 +667,10 @@
     // --- 3. MASCOT & DIALOGUE LOGIC ---
     const quotes = [
       "142 days left! Keep questing, Scholar!",
-      "Focus session recorded: +100 XP gained!",
       "Break big modules into daily micro-quests!",
+      "Every module brings you 1 step closer to the Cap!",
       "The Cap is waiting at the finish line!",
-      "Working backward from May 15 keeps you in control!",
-      "Every module is an RPG boss you can defeat!"
+      "Working backward from May 15 keeps you in control!"
     ];
     let quoteIndex = 0;
     let credits = 18;
@@ -890,7 +681,7 @@
       document.getElementById('speech-bubble').innerText = `"${quotes[quoteIndex]}"`;
       
       const el = document.getElementById('ellie-svg');
-      el.style.transform = 'scale(1.15) rotate(5deg)';
+      el.style.transform = 'scale(1.15) rotate(4deg)';
       setTimeout(() => el.style.transform = 'none', 180);
     }
 
@@ -901,7 +692,9 @@
         spawnConfetti(25);
         updateProgress();
         if (credits === 24) {
-          triggerGraduationVictory();
+          soundFanfare();
+          spawnConfetti(100);
+          document.getElementById('speech-bubble').innerText = '"CONGRATULATIONS! DIPLOMA CONFERRED!"';
         }
       } else {
         credits = 12;
@@ -916,48 +709,7 @@
       document.getElementById('xp-bar').style.width = `${pct}%`;
     }
 
-    function triggerGraduationVictory() {
-      soundFanfare();
-      spawnConfetti(120);
-      document.getElementById('speech-bubble').innerText = '"CONGRATULATIONS! DIPLOMA CONFERRED!"';
-    }
-
-    // --- 4. VIEW / MODE SWITCHER ---
-    function switchMode(mode, el) {
-      soundClick();
-      document.querySelectorAll('.view-pill').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-
-      const cdView = document.getElementById('countdown-view');
-      const focusView = document.getElementById('focus-view');
-      const drawer = document.getElementById('roadmap-drawer');
-
-      if (mode === 'countdown') {
-        cdView.style.display = 'block';
-        focusView.style.display = 'none';
-        drawer.classList.remove('open');
-      } else if (mode === 'focus') {
-        cdView.style.display = 'none';
-        focusView.style.display = 'block';
-        drawer.classList.remove('open');
-      } else if (mode === 'roadmap') {
-        drawer.classList.add('open');
-      }
-    }
-
-    function closeRoadmap() {
-      soundClick();
-      document.getElementById('roadmap-drawer').classList.remove('open');
-      document.querySelectorAll('.view-pill')[0].click();
-    }
-
-    function toggleCRT() {
-      soundClick();
-      const crt = document.getElementById('crt');
-      crt.style.display = crt.style.display === 'none' ? 'block' : 'none';
-    }
-
-    // --- 5. STARFIELD & CONFETTI CANVAS ---
+    // --- 4. STARFIELD & CONFETTI CANVAS ---
     const canvas = document.getElementById('stars-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -970,11 +722,11 @@
     window.addEventListener('resize', resizeCanvas);
     setTimeout(resizeCanvas, 100);
 
-    const staticStars = Array.from({length: 45}, () => ({
+    const staticStars = Array.from({length: 40}, () => ({
       x: Math.random() * 380,
-      y: Math.random() * 780,
+      y: Math.random() * 760,
       size: Math.random() > 0.7 ? 2 : 1,
-      color: ['#fff', '#ffd46c', '#5fe0db', '#baafd0'][Math.floor(Math.random() * 4)],
+      color: ['#ffffff', '#ffd46c', '#5fe0db', '#baafd0'][Math.floor(Math.random() * 4)],
       twinkle: Math.random() * Math.PI
     }));
 
@@ -984,9 +736,9 @@
         particles.push({
           x: canvas.width / 2 + (Math.random() - 0.5) * 80,
           y: canvas.height * 0.4 + (Math.random() - 0.5) * 50,
-          vx: (Math.random() - 0.5) * 8,
-          vy: (Math.random() - 1.5) * 7,
-          size: Math.random() * 4 + 2,
+          vx: (Math.random() - 0.5) * 6,
+          vy: (Math.random() - 1.5) * 6,
+          size: Math.random() * 3 + 2,
           color: colors[Math.floor(Math.random() * colors.length)],
           alpha: 1,
           decay: Math.random() * 0.02 + 0.01
@@ -1027,7 +779,7 @@
     }
     animate();
 
-    // --- 6. WALLPAPER EXPORTER (1080x1920 HD PNG) ---
+    // --- 5. CLEAN 1080x1920 WALLPAPER EXPORTER ---
     function exportWallpaper() {
       soundFanfare();
       const exportCanvas = document.createElement('canvas');
@@ -1038,7 +790,7 @@
       ex.fillStyle = '#11162c';
       ex.fillRect(0, 0, 1080, 1920);
 
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 180; i++) {
         ex.fillStyle = ['#ffffff', '#ffd46c', '#5fe0db'][Math.floor(Math.random() * 3)];
         ex.fillRect(Math.random() * 1080, Math.random() * 1920, 3, 3);
       }
@@ -1073,7 +825,7 @@
 
       ex.fillStyle = '#ffffff';
       ex.font = '26px "Press Start 2P", monospace';
-      ex.fillText(`CREDITS EARNED: ${credits} / 24 [75%]`, 540, 950);
+      ex.fillText(`CREDITS EARNED: ${credits} / 24 [${Math.round((credits/24)*100)}%]`, 540, 950);
 
       ex.fillStyle = '#0e0d1f';
       ex.fillRect(180, 990, 720, 40);
