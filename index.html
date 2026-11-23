@@ -128,7 +128,6 @@
       }
     }
 
-    /* Subtle Notch */
     .notch {
       position: absolute;
       top: 10px;
@@ -141,7 +140,6 @@
       z-index: 20;
     }
 
-    /* Scanline overlay */
     .crt-overlay {
       position: absolute;
       top: 0; left: 0; bottom: 0; right: 0;
@@ -197,7 +195,7 @@
       background: var(--grass);
     }
 
-    /* Clock & Date */
+    /* Clock & Date Header */
     .lock-header {
       text-align: center;
       padding: 16px 16px 6px;
@@ -635,30 +633,34 @@
     targetDate.setHours(targetDate.getHours() + 8);
     targetDate.setMinutes(targetDate.getMinutes() + 24);
 
+    let curDays = 142, curHours = 8, curMins = 24, curSecs = 12;
+    let curTimeStr = "09:41", curDateStr = "MONDAY, NOV 23";
+
     function updateClock() {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
       const mins = String(now.getMinutes()).padStart(2, '0');
-      const timeStr = `${hours}:${mins}`;
+      curTimeStr = `${hours}:${mins}`;
       
-      document.getElementById('live-time').innerText = timeStr;
-      document.getElementById('big-time').innerText = timeStr;
+      document.getElementById('live-time').innerText = curTimeStr;
+      document.getElementById('big-time').innerText = curTimeStr;
 
       const daysOfWeek = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
       const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-      document.getElementById('live-date').innerText = `${daysOfWeek[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+      curDateStr = `${daysOfWeek[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+      document.getElementById('live-date').innerText = curDateStr;
 
       const diff = targetDate - now;
       if (diff > 0) {
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((diff / 1000 / 60) % 60);
-        const s = Math.floor((diff / 1000) % 60);
+        curDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+        curHours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        curMins = Math.floor((diff / 1000 / 60) % 60);
+        curSecs = Math.floor((diff / 1000) % 60);
 
-        document.getElementById('cd-days').innerText = String(d).padStart(3, '0');
-        document.getElementById('cd-hours').innerText = String(h).padStart(2, '0');
-        document.getElementById('cd-mins').innerText = String(m).padStart(2, '0');
-        document.getElementById('cd-secs').innerText = String(s).padStart(2, '0');
+        document.getElementById('cd-days').innerText = String(curDays).padStart(3, '0');
+        document.getElementById('cd-hours').innerText = String(curHours).padStart(2, '0');
+        document.getElementById('cd-mins').innerText = String(curMins).padStart(2, '0');
+        document.getElementById('cd-secs').innerText = String(curSecs).padStart(2, '0');
       }
     }
     setInterval(updateClock, 1000);
@@ -779,7 +781,7 @@
     }
     animate();
 
-    // --- 5. CLEAN 1080x1920 WALLPAPER EXPORTER ---
+    // --- 5. COMPLETE 1080x1920 WALLPAPER EXPORTER ---
     function exportWallpaper() {
       soundFanfare();
       const exportCanvas = document.createElement('canvas');
@@ -787,59 +789,113 @@
       exportCanvas.height = 1920;
       const ex = exportCanvas.getContext('2d');
 
+      // Night sky background
       ex.fillStyle = '#11162c';
       ex.fillRect(0, 0, 1080, 1920);
 
-      for (let i = 0; i < 180; i++) {
+      // Starfield
+      for (let i = 0; i < 220; i++) {
         ex.fillStyle = ['#ffffff', '#ffd46c', '#5fe0db'][Math.floor(Math.random() * 3)];
         ex.fillRect(Math.random() * 1080, Math.random() * 1920, 3, 3);
       }
 
+      // Date Header
       ex.fillStyle = '#ffd46c';
       ex.font = '28px "Press Start 2P", monospace';
       ex.textAlign = 'center';
-      ex.fillText('MONDAY, NOV 23', 540, 260);
+      ex.fillText(curDateStr, 540, 240);
 
+      // Big Live Time
       ex.fillStyle = '#ffffff';
       ex.font = '140px "Press Start 2P", monospace';
-      ex.fillText('09:41', 540, 420);
+      ex.fillText(curTimeStr, 540, 400);
 
+      // Main RPG Frame Box
       ex.fillStyle = '#242044';
-      ex.fillRect(100, 520, 880, 580);
+      ex.fillRect(90, 490, 900, 600);
       ex.lineWidth = 10;
       ex.strokeStyle = '#d9a256';
-      ex.strokeRect(100, 520, 880, 580);
+      ex.strokeRect(90, 490, 900, 600);
 
+      // Frame Title
       ex.fillStyle = '#ffd46c';
-      ex.font = '32px "Press Start 2P", monospace';
-      ex.fillText('★ FINAL BOSS: GRADUATION DAY ★', 540, 600);
+      ex.font = '30px "Press Start 2P", monospace';
+      ex.fillText('★ FINAL BOSS: GRADUATION DAY ★', 540, 565);
 
+      // Countdown Sub-box
       ex.fillStyle = '#19172f';
-      ex.fillRect(140, 640, 800, 240);
+      ex.fillRect(130, 605, 820, 230);
       ex.strokeStyle = '#a66b28';
-      ex.strokeRect(140, 640, 800, 240);
+      ex.lineWidth = 6;
+      ex.strokeRect(130, 605, 820, 230);
 
+      // T-Minus Digits
       ex.fillStyle = '#ffffff';
-      ex.font = '84px "VT323", monospace';
-      ex.fillText('142 DAYS : 08 HRS : 24 MIN', 540, 770);
+      ex.font = '86px "VT323", monospace';
+      const dStr = `${String(curDays).padStart(3, '0')}D : ${String(curHours).padStart(2, '0')}H : ${String(curMins).padStart(2, '0')}M : ${String(curSecs).padStart(2, '0')}S`;
+      ex.fillText(dStr, 540, 735);
 
+      // XP Progress Bar
+      const pct = Math.round((credits / 24) * 100);
       ex.fillStyle = '#ffffff';
-      ex.font = '26px "Press Start 2P", monospace';
-      ex.fillText(`CREDITS EARNED: ${credits} / 24 [${Math.round((credits/24)*100)}%]`, 540, 950);
+      ex.font = '24px "Press Start 2P", monospace';
+      ex.fillText(`CREDITS EARNED: ${credits} / 24 [${pct}%]`, 540, 915);
 
       ex.fillStyle = '#0e0d1f';
-      ex.fillRect(180, 990, 720, 40);
+      ex.fillRect(170, 955, 740, 44);
       ex.fillStyle = '#ffd46c';
-      ex.fillRect(185, 995, 710 * (credits / 24), 30);
+      ex.fillRect(175, 960, 730 * (credits / 24), 34);
 
-      ex.fillStyle = '#baafd0';
-      ex.font = '24px "Press Start 2P", monospace';
-      ex.fillText('QUEST TO THE CAP • DIPLOMAQUEST', 540, 1680);
+      // Active Gate Milestone Box
+      ex.fillStyle = '#19172f';
+      ex.fillRect(90, 1130, 900, 110);
+      ex.strokeStyle = '#5fe0db';
+      ex.lineWidth = 6;
+      ex.strokeRect(90, 1130, 900, 110);
 
-      const link = document.createElement('a');
-      link.download = 'quest-to-the-cap-lockscreen-1080x1920.png';
-      link.href = exportCanvas.toDataURL('image/png');
-      link.click();
+      ex.fillStyle = '#5fe0db';
+      ex.font = '20px "Press Start 2P", monospace';
+      ex.fillText('ACTIVE GATE [2/4] • T - 142 DAYS', 540, 1175);
+      ex.fillStyle = '#ffffff';
+      ex.fillText('⚔️ Complete Module 4: Calculus Capstone', 540, 1215);
+
+      // Rasterize Ellie Mascot from SVG
+      const svgElement = document.getElementById('ellie-svg');
+      const svgString = new XMLSerializer().serializeToString(svgElement);
+      const svgBlob = new Blob([svgString], {type: 'image/svg+xml;charset=utf-8'});
+      const URL = window.URL || window.webkitURL || window;
+      const blobURL = URL.createObjectURL(svgBlob);
+      const image = new Image();
+      
+      image.onload = () => {
+        ex.drawImage(image, 160, 1310, 220, 220);
+
+        // Speech Bubble
+        ex.fillStyle = '#ffffff';
+        ex.fillRect(410, 1340, 520, 140);
+        ex.strokeStyle = '#11162c';
+        ex.lineWidth = 8;
+        ex.strokeRect(410, 1340, 520, 140);
+
+        ex.fillStyle = '#11162c';
+        ex.font = '22px "Press Start 2P", monospace';
+        ex.textAlign = 'left';
+        ex.fillText('Keep questing, Scholar!', 440, 1395);
+        ex.fillText('Next quest: Module 4!', 440, 1445);
+
+        // Swipe up indicator
+        ex.fillStyle = '#baafd0';
+        ex.font = '24px "Press Start 2P", monospace';
+        ex.textAlign = 'center';
+        ex.fillText('▲ SWIPE UP TO ENTER QUEST ▲', 540, 1780);
+
+        URL.revokeObjectURL(blobURL);
+        const link = document.createElement('a');
+        link.download = 'quest-to-the-cap-lockscreen-1080x1920.png';
+        link.href = exportCanvas.toDataURL('image/png');
+        link.click();
+      };
+      image.src = blobURL;
     }
   </script>
 </body>
