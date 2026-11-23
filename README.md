@@ -45,10 +45,11 @@ The core of the Handshake × Google challenge is **working backward from a deadl
 
 ## 🤖 AI Co-Creation & Technical Methodology
 
-Prototyped and built in collaboration with **Google AI (Gemini)**:
+Prototyped and built in collaboration with **Google AI (Gemini)** and modern generative pipelines:
 
 * **Reverse Velocity Modeling:** Prompted Gemini with academic credit requirements and deadline dates to generate optimal pacing intervals, pacing checkpoints evenly across semesters to prevent end-of-term crunch.
 * **Modern Web Audio Chimes:** Generated a zero-dependency Web Audio API sound synthesizer that procedurally crafts soft, harmonic sine-wave chimes for milestone updates and companion interactions.
+* **High-Efficiency Visual Pipeline (FLUX.1 Schnell):** Deployed state-of-the-art FLUX.1 Schnell inference via Cloudflare Edge to generate high-fidelity, sub-2-second gothic castle arch and cosmic nebula wallpaper vistas specifically framed for OLED mobile lock screens.
 * **OLED Cognitive Ergonomics:** Engineered an ultra-low power dark theme (`#0b0918`, `#120e28`) utilizing high-translucency glassmorphism, 92% low-draw OLED pixels, and glowing mint (`#65d7af`) and gold (`#ffd46c`) accents for instant sunlight readability.
 * **Storybook Companion (Ellie):** Integrated high-resolution in-app illustrated artwork for **Ellie** (the cape-wearing elephant with her star wand), providing contextual study encouragement right above the lock screen home swipe bar.
 
