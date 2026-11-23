@@ -30,7 +30,7 @@ The core of the Handshake × Google challenge is **working backward from a deadl
 
 1. **Gate 4 (T-Minus 0 Days — Graduation Day):** Master graduation ceremony deadline tracked with high-contrast, clean typography (Days, Hours, Minutes, Seconds).
 2. **Gate 3 (T-Minus 60 Days — Capstone Defense):** Portfolio verification and thesis review gate.
-3. **Gate 2 (T-Minus 142 Days — Current Active Gate):** The immediate 2-week sprint (*"Module 4: Calculus Capstone"*). Surfacing **only** the active gate on the lock screen eliminates cognitive overload.
+3. **Gate 2 (T-Minus 142 Days — Current Active Gate):** The immediate active milestone (*"Module 4: Calculus Capstone"*). Surfacing **only** the active goal on the lock screen eliminates cognitive overload.
 4. **Credit Progression Bar:** Translates 24 degree credits into a glowing gradient progress pill (`18 / 24 Credits Earned • 75% Level 18 Scholar`), giving instant dopamine for incremental progress.
 
 ---
