@@ -54,33 +54,15 @@ Prototyped and built in collaboration with **Google AI (Gemini)**:
 
 ---
 
-## ✨ Interactive Features in the Live Demo
+## ✨ Features in the Live Demo
 
 Visit the **[Live Interactive Demo](https://daggerstuff.github.io/quest-to-the-cap/)**:
 
-| Feature | Description |
-| :--- | :--- |
-| **📸 1-Click Wallpaper Exporter** | Renders a high-resolution 1080x1920 PNG lock screen wallpaper via HTML5 canvas and downloads it instantly for your actual device. |
-| **🔊 8-Bit Chiptune Audio** | In-browser Web Audio synthesizer for nostalgic retro sound effects without loading audio files. |
-| **🗺️ Reverse Roadmap Drawer** | Tap *"Reverse Path"* to slide out the backward-mapped milestone timeline. |
-| **⏳ Live Activity Mode** | Tap *"Live Focus"* to toggle a 25-minute lock-screen study session widget inspired by Dynamic Island / At a Glance. |
-| **⭐ Interactive XP Leveling** | Click `+1 Credit Earned` to see the XP bar advance, play coin audio, and trigger particle confetti. |
-| **📺 CRT Scanline Shader** | Toggle nostalgic retro CRT scanlines and pixel starfield animations. |
-
----
-
-## 🚀 Quickstart / Run Locally
-
-No build tools, bundlers, or package managers required. Pure HTML5, CSS3, and modern JavaScript:
-
-```bash
-# Clone the repository
-git clone https://github.com/daggerstuff/quest-to-the-cap.git
-
-# Open directly in your browser
-cd quest-to-the-cap
-open index.html # or start a simple server: python3 -m http.server 8000
-```
+* **📸 1-Click Wallpaper Exporter:** Renders a high-resolution 1080x1920 PNG lock screen wallpaper via HTML5 canvas and downloads it instantly for your actual device.
+* **🔊 8-Bit Chiptune Audio:** In-browser Web Audio synthesizer for nostalgic retro sound effects without loading external audio files.
+* **⭐ Interactive XP Leveling:** Tap the XP bar to advance credits, play coin audio, and trigger particle confetti.
+* **🐘 Mascot Companion:** Tap mascot Ellie for contextual study encouragement and reactive animations.
+* **📺 Ambient CRT Scanlines:** Subtle retro scanlines and animated pixel starfield.
 
 ---
 
