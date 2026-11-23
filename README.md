@@ -1,6 +1,6 @@
 # 🎓 Quest to the Cap: Modern Graduation Countdown Lock Screen
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-ffd46c?style=for-the-badge&logo=github)](https://daggerstuff.github.io/quest-to-the-cap/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-lock.pixelthis.app-ffd46c?style=for-the-badge&logo=cloudflare)](https://lock.pixelthis.app/)
 [![Mission](https://img.shields.io/badge/Handshake%20×%20Google-AI%20Skills%20Studio-5fe0db?style=for-the-badge)](https://app.joinhandshake.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-65d9b1?style=for-the-badge)](LICENSE)
 
@@ -56,7 +56,7 @@ Prototyped and built in collaboration with **Google AI (Gemini)**:
 
 ## ✨ Features in the Live Demo
 
-Visit the **[Live Interactive Demo](https://daggerstuff.github.io/quest-to-the-cap/)**:
+Visit the **[Live Interactive Demo (lock.pixelthis.app)](https://lock.pixelthis.app/)**:
 
 * **📸 1-Click Wallpaper Exporter:** Renders a high-resolution 1080x1920 PNG lock screen wallpaper via HTML5 canvas with the live countdown and high-res Ellie, downloading it instantly for your device.
 * **🔊 Procedural Ambient Audio:** In-browser Web Audio synthesizer for pleasant harmonic chimes without loading external audio files.
