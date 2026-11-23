@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Quest to the Cap: 8-Bit RPG Graduation Countdown Lock Screen</title>
+  
+  <!-- Open Graph / Meta -->
+  <meta name="description" content="Working backward from graduation day: reverse milestones, 8-bit chiptune audio, and instant wallpaper export. Built for Handshake × Google AI Skills Studio.">
+  <meta property="og:title" content="Quest to the Cap: 8-Bit RPG Graduation Countdown Lock Screen">
+  <meta property="og:description" content="Working backward from graduation day: reverse milestones, 8-bit chiptune audio, and instant wallpaper export.">
+  <meta property="og:image" content="https://daggerstuff.github.io/quest-to-the-cap/assets/quest_to_the_cap_showcase.jpg">
+  <meta property="og:url" content="https://daggerstuff.github.io/quest-to-the-cap/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #11162c;
+      --bg-dark: #0a0d1a;
+      --surface: #242044;
+      --surface-warm: #35275b;
+      --surface-card: #19172f;
+      --fg: #fff3d8;
+      --muted: #baafd0;
+      --gold: #ffd46c;
+      --gold-deep: #a66b28;
+      --gold-border: #d9a256;
+      --grass: #65d9b1;
+      --sky: #5fe0db;
+      --rose: #ff9cc2;
+      --plum: #cf6aa6;
+      --font-pixel: "Press Start 2P", monospace;
+      --font-mono: "VT323", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 15%, #1d1742 0%, #080b18 100%);
+      color: var(--fg);
+      font-family: var(--font-pixel);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 12px 40px;
+      overflow-x: hidden;
+    }
+
+    /* Top Showcase Bar */
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 20px;
+      max-width: 640px;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 212, 108, 0.12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 6px 14px;
+      font-size: 8px;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(255, 212, 108, 0.2);
+    }
+    .showcase-title {
+      font-size: 20px;
+      color: #ffffff;
+      text-shadow: 2px 2px 0 var(--gold-deep), 0 0 20px rgba(255, 212, 108, 0.3);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .showcase-subtitle {
+      font-size: 9px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Device Mockup Stage */
+    .device-stage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+
+    .phone-wrapper {
+      position: relative;
+      width: 380px;
+      height: 780px;
+      background: var(--bg);
+      border-radius: 46px;
+      border: 12px solid #28243d;
+      box-shadow: 
+        0 0 0 2px #443c68,
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        inset 0 0 15px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px 4px 30px;
+      }
+      .phone-wrapper {
+        width: 100%;
+        max-width: 360px;
+        height: 740px;
+        border-width: 8px;
+        border-radius: 36px;
+      }
+      .showcase-title {
+        font-size: 16px;
+      }
+    }
+
+    /* Dynamic Island */
+    .dynamic-island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 24px;
+      background: #000000;
+      border-radius: 16px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      font-size: 7px;
+      color: var(--gold);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      transition: width 0.3s ease;
+    }
+    .island-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1a1a2e;
+      border: 1px solid #333;
+    }
+
+    /* Scanline Overlay */
+    .crt-overlay {
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.28) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 15;
+      opacity: 0.5;
+    }
+
+    #stars-canvas {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Status Bar */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px 6px;
+      font-size: 8px;
+      color: var(--muted);
+      z-index: 10;
+    }
+    .status-icons {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .battery-icon {
+      display: inline-block;
+      width: 17px;
+      height: 9px;
+      border: 1px solid var(--muted);
+      padding: 1px;
+      position: relative;
+    }
+    .battery-icon::after {
+      content: "";
+      position: absolute;
+      right: -3px;
+      top: 2px;
+      width: 2px;
+      height: 3px;
+      background: var(--muted);
+    }
+    .battery-fill {
+      width: 85%;
+      height: 100%;
+      background: var(--grass);
+    }
+
+    /* Clock & Date */
+    .lock-header {
+      text-align: center;
+      padding: 12px 16px 6px;
+      z-index: 10;
+    }
+    .lock-date {
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .lock-time {
+      font-size: 46px;
+      color: #ffffff;
+      text-shadow: 3px 3px 0 #070914;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    /* Mode Switcher Tabs */
+    .view-pills {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin: 8px 16px;
+      z-index: 10;
+    }
+    .view-pill {
+      background: #16142a;
+      border: 1px solid #3c3461;
+      color: var(--muted);
+      font-size: 7px;
+      padding: 6px 9px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .view-pill.active {
+      background: var(--surface-warm);
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 10px rgba(255, 212, 108, 0.35);
+    }
+
+    /* RPG Frame Box */
+    .rpg-box {
+      margin: 4px 16px 8px;
+      background: var(--surface);
+      border: 4px solid var(--gold-border);
+      box-shadow: 0 0 0 2px #0b1025, 4px 4px 0 #080b1b;
+      padding: 12px 10px;
+      z-index: 10;
+      position: relative;
+    }
+    .rpg-box::before {
+      content: "";
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border: 1px dashed var(--gold-deep);
+      pointer-events: none;
+    }
+
+    .box-title {
+      font-size: 8px;
+      color: var(--gold);
+      text-align: center;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* Countdown Grid */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .countdown-unit {
+      background: var(--surface-card);
+      border: 2px solid var(--gold-deep);
+      padding: 6px 2px;
+      position: relative;
+      overflow: hidden;
+    }
+    .countdown-num {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      color: #ffffff;
+      line-height: 1;
+      text-shadow: 2px 2px 0 #000;
+    }
+    .countdown-label {
+      font-size: 6px;
+      color: var(--muted);
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+    }
+
+    /* XP Progress Bar */
+    .progress-section {
+      margin-top: 8px;
+    }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 8px;
+      color: var(--fg);
+      margin-bottom: 5px;
+    }
+    .bar-outer {
+      height: 16px;
+      background: #0e0d1f;
+      border: 2px solid #59404b;
+      padding: 2px;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+    }
+    .bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, #65d7af 0%, #ffd46c 100%);
+      width: 75%;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,0.5);
+      transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
+    .bar-sheen {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+      animation: sheen 3s infinite;
+    }
+    @keyframes sheen {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+
+    /* Active Gate / Milestone */
+    .quest-gate {
+      margin: 4px 16px 0;
+      background: var(--surface-card);
+      border-left: 4px solid var(--sky);
+      border-top: 1px solid #2b254d;
+      border-right: 1px solid #2b254d;
+      border-bottom: 1px solid #2b254d;
+      padding: 8px 10px;
+      font-size: 8px;
+      line-height: 1.4;
+      z-index: 10;
+    }
+    .quest-gate-tag {
+      color: var(--sky);
+      font-size: 7px;
+      letter-spacing: 1px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .quest-gate-name {
+      color: #ffffff;
+      margin-top: 3px;
+      font-size: 8px;
+    }
+
+    /* Mascot Ellie Section */
+    .mascot-area {
+      margin-top: auto;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 16px 14px;
+      z-index: 10;
+      gap: 10px;
+    }
+
+    .mascot-art {
+      width: 74px;
+      height: 74px;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .mascot-art:active {
+      transform: scale(0.92) rotate(-3deg);
+    }
+
+    .dialogue-bubble {
+      background: #ffffff;
+      color: #11162c;
+      border: 3px solid #11162c;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 8px;
+      line-height: 1.4;
+      position: relative;
+      box-shadow: 3px 3px 0 #000;
+      cursor: pointer;
+    }
+    .dialogue-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: 12px;
+      left: -9px;
+      border-width: 5px 9px 5px 0;
+      border-style: solid;
+      border-color: transparent #ffffff transparent transparent;
+    }
+    .dialogue-bubble::before {
+      content: "";
+      position: absolute;
+      bottom: 11px;
+      left: -13px;
+      border-width: 6px 10px 6px 0;
+      border-style: solid;
+      border-color: transparent #11162c transparent transparent;
+    }
+
+    /* Unlock Prompt */
+    .unlock-prompt {
+      text-align: center;
+      font-size: 7px;
+      color: var(--muted);
+      padding-bottom: 12px;
+      letter-spacing: 1px;
+      animation: pulse 1.8s infinite;
+      z-index: 10;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-2px); }
+    }
+
+    /* Live Activity Focus State */
+    .focus-card-overlay {
+      display: none;
+      margin: 10px 16px;
+      background: #19172f;
+      border: 3px solid var(--sky);
+      box-shadow: 0 0 16px rgba(95, 224, 219, 0.35);
+      padding: 14px;
+      z-index: 10;
+    }
+    .focus-ring-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+    .focus-timer-digits {
+      font-family: var(--font-mono);
+      font-size: 34px;
+      color: var(--sky);
+      text-shadow: 0 0 10px rgba(95, 224, 219, 0.6);
+    }
+
+    /* Reverse Roadmap Drawer */
+    .roadmap-drawer {
+      display: none;
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 72%;
+      background: #1b1735;
+      border-top: 4px solid var(--gold);
+      border-radius: 24px 24px 0 0;
+      z-index: 30;
+      padding: 16px;
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+      overflow-y: auto;
+    }
+    .roadmap-drawer.open {
+      display: block;
+      animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .gate-step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #3a325e;
+    }
+    .gate-icon {
+      font-size: 14px;
+    }
+
+    /* Interactive Control Deck */
+    .deck-container {
+      margin-top: 24px;
+      width: 100%;
+      max-width: 540px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .deck-title {
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 2px;
+    }
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      background: var(--surface);
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 8px 12px;
+      font-family: var(--font-pixel);
+      font-size: 8px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #000;
+      transition: all 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: var(--surface-warm);
+      transform: translateY(-1px);
+      box-shadow: 4px 4px 0 #000;
+    }
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 #000;
+    }
+    .btn.primary {
+      background: #ffd46c;
+      color: #11162c;
+      border-color: #ffffff;
+      font-weight: bold;
+    }
+    .btn.primary:hover {
+      background: #ffe08f;
+    }
+
+    /* Footer Credits */
+    .footer-links {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 8px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .footer-links a {
+      color: var(--gold);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Showcase Banner -->
+  <div class="showcase-header">
+    <div class="badge-pill">★ Handshake × Google AI Skills Studio Showcase ★</div>
+    <h1 class="showcase-title">Quest to the Cap: 8-Bit Lock Screen</h1>
+    <p class="showcase-subtitle">Working backward from graduation day: reverse milestones, 8-bit chiptune audio, and instant wallpaper export.</p>
+  </div>
+
+  <!-- Mobile Phone Mockup Device -->
+  <div class="device-stage">
+    <div class="phone-wrapper" id="phone">
+      <!-- Dynamic Island -->
+      <div class="dynamic-island" id="island">
+        <span class="island-dot"></span>
+        <span id="island-text">🎓 T-142D</span>
+        <span class="island-dot"></span>
+      </div>
+
+      <!-- Scanline Overlay -->
+      <div class="crt-overlay" id="crt"></div>
+
+      <!-- Canvas Starfield & Confetti -->
+      <canvas id="stars-canvas"></canvas>
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <span>QUEST-OS</span>
+        <span id="live-time">09:41</span>
+        <div class="status-icons">
+          <span style="font-size:8px;">5G</span>
+          <span class="battery-icon"><span class="battery-fill"></span></span>
+        </div>
+      </div>
+
+      <!-- Clock & Date Header -->
+      <div class="lock-header">
+        <div class="lock-date" id="live-date">MONDAY, NOV 23</div>
+        <div class="lock-time" id="big-time">09:41</div>
+      </div>
+
+      <!-- View Switcher Tabs -->
+      <div class="view-pills">
+        <div class="view-pill active" onclick="switchMode('countdown', this)">⚔️ Quest Timer</div>
+        <div class="view-pill" onclick="switchMode('focus', this)">⏳ Live Focus</div>
+        <div class="view-pill" onclick="switchMode('roadmap', this)">🗺️ Reverse Path</div>
+      </div>
+
+      <!-- MAIN COUNTDOWN STATE -->
+      <div id="countdown-view">
+        <div class="rpg-box">
+          <div class="box-title">★ FINAL BOSS: GRADUATION DAY ★</div>
+          <div class="countdown-grid">
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-days">142</div>
+              <div class="countdown-label">DAYS</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-hours">08</div>
+              <div class="countdown-label">HOURS</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-mins">24</div>
+              <div class="countdown-label">MINS</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-secs">12</div>
+              <div class="countdown-label">SECS</div>
+            </div>
+          </div>
+
+          <!-- XP / Credit Progress -->
+          <div class="progress-section">
+            <div class="progress-header">
+              <span>CREDITS: <strong id="credit-count" style="color:var(--gold);">18 / 24</strong></span>
+              <span style="color:var(--grass);" id="percent-label">75% • LVL 18</span>
+            </div>
+            <div class="bar-outer">
+              <div class="bar-inner" id="xp-bar" style="width: 75%;">
+                <div class="bar-sheen"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Gate / Milestone -->
+        <div class="quest-gate">
+          <div class="quest-gate-tag">
+            <span>ACTIVE GATE [2/4]</span>
+            <span style="color:var(--gold);">T - 142 DAYS</span>
+          </div>
+          <div class="quest-gate-name">⚔️ Complete Module 4: Calculus Capstone</div>
+        </div>
+      </div>
+
+      <!-- FOCUS ACTIVITY STATE (Dynamic Island / Live Activity) -->
+      <div class="focus-card-overlay" id="focus-view">
+        <div class="quest-gate-tag" style="color:var(--sky); margin-bottom: 6px;">
+          <span>LIVE ACTIVITY • STUDY FOCUS</span>
+          <span style="color:var(--grass);">+100 XP / 25M</span>
+        </div>
+        <div class="focus-ring-wrap">
+          <div class="focus-timer-digits" id="focus-digits">24:45</div>
+        </div>
+        <div style="font-size:7px; color:var(--muted); text-align:center;">
+          Lock screen widgets prevent context switching & notification distractions.
+        </div>
+      </div>
+
+      <!-- Mascot Ellie Section -->
+      <div class="mascot-area">
+        <svg class="mascot-art" id="ellie-svg" onclick="pokeEllie()" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="32,4 12,14 32,22 52,14" fill="#11162c" stroke="#ffd46c" stroke-width="2"/>
+          <line x1="32" y1="18" x2="48" y2="24" stroke="#ffd46c" stroke-width="2"/>
+          <rect x="47" y="24" width="4" height="6" fill="#ffd46c"/>
+          
+          <rect x="18" y="24" width="28" height="26" fill="#baafd0" rx="4"/>
+          <circle cx="32" cy="32" r="16" fill="#baafd0"/>
+          <circle cx="16" cy="30" r="8" fill="#cf6aa6"/>
+          <circle cx="48" cy="30" r="8" fill="#cf6aa6"/>
+          <rect x="26" y="28" width="4" height="6" fill="#11162c"/>
+          <rect x="34" y="28" width="4" height="6" fill="#11162c"/>
+          <rect x="27" y="29" width="1" height="2" fill="#ffffff"/>
+          <rect x="35" y="29" width="1" height="2" fill="#ffffff"/>
+          <path d="M 30 36 C 30 46, 36 46, 36 42" stroke="#baafd0" stroke-width="5" stroke-linecap="round"/>
+          <path d="M 28 20 L 36 24 L 28 24 Z M 36 20 L 28 24 L 36 24 Z" fill="#ffd46c"/>
+          <circle cx="32" cy="22" r="2" fill="#a66b28"/>
+          <circle cx="23" cy="35" r="3" fill="#ff9cc2" opacity="0.8"/>
+          <circle cx="41" cy="35" r="3" fill="#ff9cc2" opacity="0.8"/>
+          <rect x="20" y="48" width="8" height="6" fill="#242044"/>
+          <rect x="36" y="48" width="8" height="6" fill="#242044"/>
+        </svg>
+
+        <div class="dialogue-bubble" id="speech-bubble" onclick="pokeEllie()">
+          "142 days left! Keep questing, Scholar!"
+        </div>
+      </div>
+
+      <!-- Bottom Swipe Prompt -->
+      <div class="unlock-prompt" id="unlock-text">▲ SWIPE UP TO ENTER QUEST ▲</div>
+
+      <!-- ROADMAP DRAWER -->
+      <div class="roadmap-drawer" id="roadmap-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <span style="font-size:9px; color:var(--gold);">REVERSE MILESTONE GATES</span>
+          <button class="btn" style="padding:4px 8px; font-size:7px;" onclick="closeRoadmap()">✕ CLOSE</button>
+        </div>
+
+        <div class="gate-step" style="opacity:0.6;">
+          <div class="gate-icon">✅</div>
+          <div>
+            <div style="color:var(--grass);">GATE 1: FOUNDATION MODULES</div>
+            <div style="color:var(--muted); font-size:7px;">Completed 12 Credits • Core Curriculum</div>
+          </div>
+        </div>
+
+        <div class="gate-step" style="border-left: 3px solid var(--sky); padding-left: 6px;">
+          <div class="gate-icon">⚔️</div>
+          <div>
+            <div style="color:var(--sky);">GATE 2: ADVANCED ELECTIVES (NOW)</div>
+            <div style="color:#fff; font-size:7px;">6 Credits in progress • Target: 18 Credits</div>
+          </div>
+        </div>
+
+        <div class="gate-step">
+          <div class="gate-icon">🛡️</div>
+          <div>
+            <div style="color:var(--gold);">GATE 3: CAPSTONE DEFENSE (T-60D)</div>
+            <div style="color:var(--muted); font-size:7px;">Final Project Verification & Review</div>
+          </div>
+        </div>
+
+        <div class="gate-step">
+          <div class="gate-icon">🎓</div>
+          <div>
+            <div style="color:var(--rose);">GATE 4: GRADUATION DAY (T-0D)</div>
+            <div style="color:var(--muted); font-size:7px;">24/24 Credits Earned • Diploma Conferred</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Control Deck -->
+  <div class="deck-container">
+    <div class="deck-title">INTERACTIVE MISSION TEST DECK</div>
+    <div class="btn-row">
+      <button class="btn primary" onclick="exportWallpaper()">📸 Export 1080x1920 Wallpaper</button>
+      <button class="btn" onclick="addCredit()">⭐ +1 Credit Earned</button>
+      <button class="btn" onclick="toggleAudio()" id="audio-btn">🔊 8-Bit Audio: ON</button>
+      <button class="btn" onclick="toggleCRT()">📺 CRT FX</button>
+      <button class="btn" onclick="triggerGraduationVictory()">🎉 Graduation Blast</button>
+      <a class="btn" href="https://github.com/daggerstuff/quest-to-the-cap" target="_blank" rel="noopener">📂 View on GitHub</a>
+    </div>
+  </div>
+
+  <div class="footer-links">
+    <div>Created for the <strong>Handshake × Google AI Skills Studio</strong> Mission Challenge</div>
+    <div>Co-Designed with Google Gemini • Open Source MIT License</div>
+  </div>
+
+  <script>
+    // --- 1. WEB AUDIO 8-BIT SYNTHESIZER ---
+    let audioCtx = null;
+    let audioEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playBeep(freq, duration, type = 'square', gainLevel = 0.08) {
+      if (!audioEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(gainLevel, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function soundCoin() {
+      playBeep(987.77, 0.08, 'square', 0.1);
+      setTimeout(() => playBeep(1318.51, 0.2, 'square', 0.1), 80);
+    }
+
+    function soundClick() {
+      playBeep(440, 0.04, 'triangle', 0.06);
+    }
+
+    function soundFanfare() {
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, i) => {
+        setTimeout(() => playBeep(freq, 0.15, 'square', 0.12), i * 110);
+      });
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      document.getElementById('audio-btn').innerText = audioEnabled ? '🔊 8-Bit Audio: ON' : '🔇 8-Bit Audio: OFF';
+      if (audioEnabled) soundClick();
+    }
+
+    // --- 2. LIVE COUNTDOWN & REAL-TIME CLOCK ---
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 142);
+    targetDate.setHours(targetDate.getHours() + 8);
+    targetDate.setMinutes(targetDate.getMinutes() + 24);
+
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const timeStr = `${hours}:${mins}`;
+      
+      document.getElementById('live-time').innerText = timeStr;
+      document.getElementById('big-time').innerText = timeStr;
+
+      const daysOfWeek = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+      const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+      document.getElementById('live-date').innerText = `${daysOfWeek[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+
+      const diff = targetDate - now;
+      if (diff > 0) {
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / 1000 / 60) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('cd-days').innerText = String(d).padStart(3, '0');
+        document.getElementById('cd-hours').innerText = String(h).padStart(2, '0');
+        document.getElementById('cd-mins').innerText = String(m).padStart(2, '0');
+        document.getElementById('cd-secs').innerText = String(s).padStart(2, '0');
+        document.getElementById('island-text').innerText = `🎓 T-${d}D`;
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // --- 3. MASCOT & DIALOGUE LOGIC ---
+    const quotes = [
+      "142 days left! Keep questing, Scholar!",
+      "Focus session recorded: +100 XP gained!",
+      "Break big modules into daily micro-quests!",
+      "The Cap is waiting at the finish line!",
+      "Working backward from May 15 keeps you in control!",
+      "Every module is an RPG boss you can defeat!"
+    ];
+    let quoteIndex = 0;
+    let credits = 18;
+
+    function pokeEllie() {
+      soundClick();
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById('speech-bubble').innerText = `"${quotes[quoteIndex]}"`;
+      
+      const el = document.getElementById('ellie-svg');
+      el.style.transform = 'scale(1.15) rotate(5deg)';
+      setTimeout(() => el.style.transform = 'none', 180);
+    }
+
+    function addCredit() {
+      if (credits < 24) {
+        credits++;
+        soundCoin();
+        spawnConfetti(25);
+        updateProgress();
+        if (credits === 24) {
+          triggerGraduationVictory();
+        }
+      } else {
+        credits = 12;
+        updateProgress();
+      }
+    }
+
+    function updateProgress() {
+      const pct = Math.round((credits / 24) * 100);
+      document.getElementById('credit-count').innerText = `${credits} / 24`;
+      document.getElementById('percent-label').innerText = `${pct}% • LVL ${credits}`;
+      document.getElementById('xp-bar').style.width = `${pct}%`;
+    }
+
+    function triggerGraduationVictory() {
+      soundFanfare();
+      spawnConfetti(120);
+      document.getElementById('speech-bubble').innerText = '"CONGRATULATIONS! DIPLOMA CONFERRED!"';
+    }
+
+    // --- 4. VIEW / MODE SWITCHER ---
+    function switchMode(mode, el) {
+      soundClick();
+      document.querySelectorAll('.view-pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+
+      const cdView = document.getElementById('countdown-view');
+      const focusView = document.getElementById('focus-view');
+      const drawer = document.getElementById('roadmap-drawer');
+
+      if (mode === 'countdown') {
+        cdView.style.display = 'block';
+        focusView.style.display = 'none';
+        drawer.classList.remove('open');
+      } else if (mode === 'focus') {
+        cdView.style.display = 'none';
+        focusView.style.display = 'block';
+        drawer.classList.remove('open');
+      } else if (mode === 'roadmap') {
+        drawer.classList.add('open');
+      }
+    }
+
+    function closeRoadmap() {
+      soundClick();
+      document.getElementById('roadmap-drawer').classList.remove('open');
+      document.querySelectorAll('.view-pill')[0].click();
+    }
+
+    function toggleCRT() {
+      soundClick();
+      const crt = document.getElementById('crt');
+      crt.style.display = crt.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // --- 5. STARFIELD & CONFETTI CANVAS ---
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      const rect = document.getElementById('phone').getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    setTimeout(resizeCanvas, 100);
+
+    const staticStars = Array.from({length: 45}, () => ({
+      x: Math.random() * 380,
+      y: Math.random() * 780,
+      size: Math.random() > 0.7 ? 2 : 1,
+      color: ['#fff', '#ffd46c', '#5fe0db', '#baafd0'][Math.floor(Math.random() * 4)],
+      twinkle: Math.random() * Math.PI
+    }));
+
+    function spawnConfetti(count) {
+      const colors = ['#ffd46c', '#65d9b1', '#5fe0db', '#ff9cc2', '#ffffff'];
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: canvas.width / 2 + (Math.random() - 0.5) * 80,
+          y: canvas.height * 0.4 + (Math.random() - 0.5) * 50,
+          vx: (Math.random() - 0.5) * 8,
+          vy: (Math.random() - 1.5) * 7,
+          size: Math.random() * 4 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1,
+          decay: Math.random() * 0.02 + 0.01
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const t = Date.now() * 0.003;
+      staticStars.forEach(s => {
+        const opacity = 0.3 + 0.7 * (Math.sin(s.twinkle + t) * 0.5 + 0.5);
+        ctx.globalAlpha = opacity;
+        ctx.fillStyle = s.color;
+        ctx.fillRect(s.x, s.y, s.size, s.size);
+      });
+      ctx.globalAlpha = 1;
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.2;
+        p.alpha -= p.decay;
+
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+        } else {
+          ctx.globalAlpha = p.alpha;
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+      }
+      ctx.globalAlpha = 1;
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // --- 6. WALLPAPER EXPORTER (1080x1920 HD PNG) ---
+    function exportWallpaper() {
+      soundFanfare();
+      const exportCanvas = document.createElement('canvas');
+      exportCanvas.width = 1080;
+      exportCanvas.height = 1920;
+      const ex = exportCanvas.getContext('2d');
+
+      ex.fillStyle = '#11162c';
+      ex.fillRect(0, 0, 1080, 1920);
+
+      for (let i = 0; i < 200; i++) {
+        ex.fillStyle = ['#ffffff', '#ffd46c', '#5fe0db'][Math.floor(Math.random() * 3)];
+        ex.fillRect(Math.random() * 1080, Math.random() * 1920, 3, 3);
+      }
+
+      ex.fillStyle = '#ffd46c';
+      ex.font = '28px "Press Start 2P", monospace';
+      ex.textAlign = 'center';
+      ex.fillText('MONDAY, NOV 23', 540, 260);
+
+      ex.fillStyle = '#ffffff';
+      ex.font = '140px "Press Start 2P", monospace';
+      ex.fillText('09:41', 540, 420);
+
+      ex.fillStyle = '#242044';
+      ex.fillRect(100, 520, 880, 580);
+      ex.lineWidth = 10;
+      ex.strokeStyle = '#d9a256';
+      ex.strokeRect(100, 520, 880, 580);
+
+      ex.fillStyle = '#ffd46c';
+      ex.font = '32px "Press Start 2P", monospace';
+      ex.fillText('★ FINAL BOSS: GRADUATION DAY ★', 540, 600);
+
+      ex.fillStyle = '#19172f';
+      ex.fillRect(140, 640, 800, 240);
+      ex.strokeStyle = '#a66b28';
+      ex.strokeRect(140, 640, 800, 240);
+
+      ex.fillStyle = '#ffffff';
+      ex.font = '84px "VT323", monospace';
+      ex.fillText('142 DAYS : 08 HRS : 24 MIN', 540, 770);
+
+      ex.fillStyle = '#ffffff';
+      ex.font = '26px "Press Start 2P", monospace';
+      ex.fillText(`CREDITS EARNED: ${credits} / 24 [75%]`, 540, 950);
+
+      ex.fillStyle = '#0e0d1f';
+      ex.fillRect(180, 990, 720, 40);
+      ex.fillStyle = '#ffd46c';
+      ex.fillRect(185, 995, 710 * (credits / 24), 30);
+
+      ex.fillStyle = '#baafd0';
+      ex.font = '24px "Press Start 2P", monospace';
+      ex.fillText('QUEST TO THE CAP • DIPLOMAQUEST', 540, 1680);
+
+      const link = document.createElement('a');
+      link.download = 'quest-to-the-cap-lockscreen-1080x1920.png';
+      link.href = exportCanvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>
