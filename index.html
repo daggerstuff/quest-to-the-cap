@@ -305,14 +305,11 @@
       -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 55%, transparent 100%);
     }
 
-    /* Phone Wallpaper: Modernized Diploma Quest Fantasy Window (Generated via FLUX.1 Schnell) */
+    /* Phone Wallpaper: Pure OLED Dark Gradient matching showcase 1:1 */
     .phone-wallpaper {
       position: absolute;
       inset: 0;
-      background: 
-        linear-gradient(180deg, rgba(14, 11, 32, 0.22) 0%, rgba(18, 14, 42, 0.32) 42%, rgba(10, 8, 22, 0.68) 100%),
-        url('assets/dq_world_flux.jpg') center top / cover no-repeat;
-      filter: saturate(1.25) brightness(0.98);
+      background: linear-gradient(180deg, #0e0b24 0%, #080614 60%, #030208 100%);
       pointer-events: none;
       z-index: 0;
     }
@@ -392,42 +389,42 @@
       border-radius: 1.5px;
     }
 
-    /* Modern Clock Header */
+    /* Modern Clock Header - Clean White Clock with Date Directly Below */
     .lock-header {
       text-align: center;
       padding: 10px 14px 4px;
       z-index: 10;
     }
-    .lock-date {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0.5px;
-      margin-bottom: 2px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-    }
     .lock-time {
       font-family: var(--font-display);
-      font-size: 50px;
-      font-weight: 200;
+      font-size: 52px;
+      font-weight: 300;
       color: #ffffff;
       letter-spacing: -2px;
-      line-height: 1.02;
-      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.8);
+      line-height: 1.0;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+    }
+    .lock-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+      letter-spacing: 0.2px;
+      margin-top: 3px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
 
-    /* Modern Frosted Glass Countdown Card */
+    /* Modern Frosted Glass Capsule (Unified Live Activity Card) */
     .glass-card {
-      margin: 6px 14px 0;
-      background: rgba(16, 12, 34, 0.68);
+      margin: 8px 14px 0;
+      background: rgba(35, 30, 62, 0.42);
       backdrop-filter: blur(28px) saturate(180%);
       -webkit-backdrop-filter: blur(28px) saturate(180%);
-      border: 1px solid rgba(255, 212, 108, 0.32);
-      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 24px;
       box-shadow: 
-        0 14px 34px rgba(0, 0, 0, 0.55),
-        inset 0 1px 1px rgba(255, 255, 255, 0.22);
-      padding: 12px 10px 10px;
+        0 16px 36px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      padding: 12px 14px 10px;
       z-index: 10;
       position: relative;
     }
@@ -435,103 +432,78 @@
     .card-header-badge {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       margin-bottom: 8px;
     }
     .deadline-pill {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      background: rgba(255, 212, 108, 0.14);
-      border: 1px solid rgba(255, 212, 108, 0.35);
-      color: var(--gold);
-      padding: 3px 10px;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      padding: 3px 12px;
       border-radius: 999px;
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 700;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.6px;
       cursor: pointer;
       transition: all 0.2s;
+      text-transform: uppercase;
     }
     .deadline-pill:hover {
-      background: rgba(255, 212, 108, 0.26);
+      background: rgba(255, 255, 255, 0.2);
       transform: scale(1.02);
     }
-    .edit-chip {
-      background: rgba(255, 212, 108, 0.3);
-      color: #ffffff;
-      font-size: 7.5px;
-      padding: 1px 4px;
-      border-radius: 4px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.2px;
-    }
-    .live-indicator {
-      font-size: 8px;
-      font-weight: 600;
-      color: var(--grass);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .pulse-dot-green {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--grass);
-      box-shadow: 0 0 6px var(--grass);
-    }
 
-    /* Countdown Grid */
-    .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 5px;
-      text-align: center;
-      margin-bottom: 10px;
+    /* Inline Countdown Numbers (Precise Column Alignment) */
+    .countdown-inline {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 6px;
     }
-    .countdown-unit {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 6px 1px 4px;
-      backdrop-filter: blur(8px);
+    .cd-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 52px;
     }
-    .countdown-num {
+    .cd-num {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 34px;
       font-weight: 700;
       color: #ffffff;
-      line-height: 1.1;
       letter-spacing: -0.5px;
+      line-height: 1;
       font-feature-settings: "tnum";
       font-variant-numeric: tabular-nums;
     }
-    .countdown-label {
+    .cd-label {
       font-size: 7.5px;
       font-weight: 600;
-      color: var(--muted);
-      margin-top: 1px;
-      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.8px;
       text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .cd-sep {
+      color: rgba(255, 255, 255, 0.45);
+      font-weight: 300;
+      font-size: 26px;
+      line-height: 34px;
+      user-select: none;
     }
 
     /* Progress Section */
     .progress-section {
       cursor: pointer;
+      margin-bottom: 10px;
       transition: transform 0.12s;
     }
     .progress-section:active {
       transform: scale(0.98);
-    }
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 9.5px;
-      font-weight: 600;
-      color: var(--fg-dim);
-      margin-bottom: 4px;
     }
     .bar-track {
       height: 8px;
@@ -548,74 +520,67 @@
       background: linear-gradient(90deg, #65d7af 0%, #ffd46c 100%);
       width: 75%;
       border-radius: 999px;
-      box-shadow: 0 0 12px rgba(255, 212, 108, 0.5);
+      box-shadow: 0 0 12px rgba(101, 215, 175, 0.6);
       transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+    .progress-text {
+      text-align: center;
+      font-size: 8.5px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin-top: 4px;
+      letter-spacing: 0.2px;
+    }
 
-    /* Active Gate Card */
-    .active-gate-card {
-      margin: 6px 14px 0;
-      background: rgba(16, 12, 34, 0.68);
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
-      border: 1px solid rgba(95, 224, 219, 0.32);
-      border-radius: 15px;
-      padding: 8px 12px;
+    /* Integrated Active Goal / Next Gate Chip inside Card */
+    .gate-chip {
+      background: rgba(95, 224, 219, 0.08);
+      border: 1px solid rgba(95, 224, 219, 0.25);
+      border-radius: 999px;
+      padding: 5px 12px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      z-index: 10;
+      justify-content: center;
+      gap: 6px;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
       transition: background 0.2s, transform 0.15s;
     }
-    .active-gate-card:hover {
-      background: rgba(30, 24, 62, 0.85);
+    .gate-chip:hover {
+      background: rgba(95, 224, 219, 0.16);
       transform: translateY(-1px);
     }
-    .gate-icon {
-      font-size: 14px;
+    .gate-chip-icon {
+      font-size: 10.5px;
     }
-    .gate-content {
-      flex: 1;
-    }
-    .gate-label {
-      font-size: 8px;
-      font-weight: 700;
-      color: var(--sky);
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .gate-title {
-      font-size: 10px;
+    .gate-chip-text {
+      font-size: 8.5px;
       font-weight: 600;
-      color: #ffffff;
-      margin-top: 1px;
+      color: #8beee9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* Mascot Section - Bigger Ellie & Smooth Comic Speech Balloon */
+    /* Mascot Section - Ellie & Translucent Frosted Glass Speech Bubble */
     .mascot-area {
       margin-top: auto;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
-      padding: 0 8px 4px 6px;
+      padding: 0 10px 4px 8px;
       z-index: 10;
       gap: 10px;
       position: relative;
     }
 
     .mascot-img-wrap {
-      width: 148px;
-      height: 165px;
+      width: 125px;
+      height: 145px;
       flex-shrink: 0;
       position: relative;
       cursor: pointer;
       transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-      margin-bottom: -3px;
+      margin-bottom: -2px;
       z-index: 12;
     }
     .mascot-img-wrap:active {
@@ -625,17 +590,19 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 14px 28px rgba(0,0,0,0.75));
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.65));
     }
 
-    /* Comic-Book Speech Balloon - Smooth, Curved, High Presence */
+    /* Frosted Glass Speech Bubble matching showcase render */
     .speech-bubble {
-      background: #ffffff;
-      border: 2.5px solid #14102c;
-      border-radius: 20px;
-      padding: 10px 12px 11px;
-      box-shadow: 3.5px 3.5px 0px #14102c, 0 14px 28px rgba(0, 0, 0, 0.45);
-      margin-bottom: 70px;
+      background: rgba(35, 30, 60, 0.68);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 16px;
+      padding: 10px 14px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      margin-bottom: 26px;
       flex: 1;
       cursor: pointer;
       position: relative;
@@ -645,41 +612,29 @@
     }
     .speech-bubble:hover {
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 4.5px 4.5px 0px #14102c, 0 16px 32px rgba(0, 0, 0, 0.55);
+      background: rgba(45, 38, 76, 0.75);
     }
     .speech-bubble:active {
       transform: scale(0.97);
     }
-    /* Smooth Vector Comic Tail (Zero jagged pixels) */
-    .comic-tail-svg {
+    .bubble-arrow {
       position: absolute;
-      left: -13px;
-      bottom: 11px;
-      width: 22px;
-      height: 19px;
-      pointer-events: none;
-    }
-
-    .comic-speaker {
-      display: inline-block;
-      font-family: var(--font-display);
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 0.9px;
-      color: #6d28d9;
-      background: #f5f0ff;
-      border: 1.5px solid #ddd6fe;
-      padding: 2px 7px;
-      border-radius: 6px;
-      margin-bottom: 4px;
-      text-transform: uppercase;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 10px;
+      height: 10px;
+      background: rgba(35, 30, 60, 0.68);
+      border-left: 1px solid rgba(255, 255, 255, 0.22);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      border-bottom-left-radius: 2px;
     }
     .speech-text {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: 10.5px;
-      font-weight: 700;
-      color: #14102c;
-      line-height: 1.35;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.4;
       letter-spacing: -0.1px;
       display: block;
     }
@@ -688,7 +643,7 @@
       margin: 2px auto 6px;
       width: 95px;
       height: 3.5px;
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.55);
       border-radius: 999px;
       z-index: 10;
     }
@@ -846,7 +801,7 @@
   <!-- Mobile Phone Mockup Device -->
   <div class="device-stage">
     <div class="phone-wrapper" id="phone">
-      <!-- Subtle Diploma Quest Fantasy Study & Castle Vista Wallpaper -->
+      <!-- Pure OLED Dark Wallpaper matching showcase 1:1 -->
       <div class="phone-wallpaper" aria-hidden="true"></div>
 
       <div class="dynamic-island">
@@ -866,65 +821,53 @@
         </div>
       </div>
 
-      <!-- Clock Header -->
+      <!-- Clock Header: Large Modern Clock with Date Directly Below -->
       <div class="lock-header">
-        <div class="lock-date" id="live-date">Monday, November 23</div>
         <div class="lock-time" id="big-time">09:41</div>
+        <div class="lock-date" id="live-date">Monday, November 23</div>
       </div>
 
-      <!-- Live Activity Countdown Card -->
+      <!-- Single Unified Frosted Glass Live Activity Card -->
       <div class="glass-card">
+        <!-- Top Pill / Badge -->
         <div class="card-header-badge">
-          <div class="deadline-pill" onclick="openSettings()" title="Click to edit deadline!">
-            <span id="card-goal-title">🎓 GRADUATION DAY • MAY 15</span>
-            <span class="edit-chip">✏️ EDIT</span>
-          </div>
-          <div class="live-indicator">
-            <span class="pulse-dot-green"></span>
-            LIVE COUNTDOWN
+          <div class="deadline-pill" onclick="openSettings()" title="Click to customize goal!">
+            <span id="card-goal-title">🎓 GRADUATION DAY - MAY 15</span>
           </div>
         </div>
 
-        <div class="countdown-grid">
-          <div class="countdown-unit">
-            <div class="countdown-num" id="cd-days">142</div>
-            <div class="countdown-label">Days</div>
+        <!-- Inline Countdown Display (Precise Column Alignment) -->
+        <div class="countdown-inline">
+          <div class="cd-col">
+            <span class="cd-num" id="cd-days">142</span>
+            <span class="cd-label">DAYS</span>
           </div>
-          <div class="countdown-unit">
-            <div class="countdown-num" id="cd-hours">08</div>
-            <div class="countdown-label">Hours</div>
+          <div class="cd-sep">:</div>
+          <div class="cd-col">
+            <span class="cd-num" id="cd-hours">08</span>
+            <span class="cd-label">HRS</span>
           </div>
-          <div class="countdown-unit">
-            <div class="countdown-num" id="cd-mins">24</div>
-            <div class="countdown-label">Mins</div>
-          </div>
-          <div class="countdown-unit">
-            <div class="countdown-num" id="cd-secs">12</div>
-            <div class="countdown-label">Secs</div>
+          <div class="cd-sep">:</div>
+          <div class="cd-col">
+            <span class="cd-num" id="cd-mins">24</span>
+            <span class="cd-label">MIN</span>
           </div>
         </div>
 
         <!-- Interactive Progress Section -->
         <div class="progress-section" onclick="addCredit()" title="Click to log credit!">
-          <div class="progress-header">
-            <span>CREDITS: <strong id="credit-count" style="color:var(--gold);">18 / 24</strong></span>
-            <span style="color:var(--grass);" id="percent-label">75% • Level 18</span>
-          </div>
           <div class="bar-track">
             <div class="bar-fill" id="xp-bar" style="width: 75%;"></div>
           </div>
-        </div>
-      </div>
-
-      <!-- Active Goal Milestone -->
-      <div class="active-gate-card" onclick="openSettings()" title="Click to edit current goal!">
-        <div class="gate-icon">⚔️</div>
-        <div class="gate-content">
-          <div class="gate-label">
-            <span id="gate-label-text">Active Goal • T - 142 Days</span>
-            <span class="edit-chip" style="font-size:7px;">EDIT</span>
+          <div class="progress-text">
+            <span id="credit-status-text">18 / 24 Credits Earned • 75%</span>
           </div>
-          <div class="gate-title" id="gate-title-text">Module 4: Calculus Capstone</div>
+        </div>
+
+        <!-- Integrated Active Goal / Next Gate Chip -->
+        <div class="gate-chip" onclick="openSettings()" title="Click to edit milestone goal!">
+          <span class="gate-chip-icon">⚔️</span>
+          <span class="gate-chip-text" id="gate-title-text">Next Gate: Module 4 Calculus Capstone</span>
         </div>
       </div>
 
@@ -935,13 +878,8 @@
         </div>
 
         <div class="speech-bubble" id="speech-bubble" onclick="pokeEllie()" title="Click to hear Ellie's tips!">
-          <span class="comic-speaker">ELLIE</span>
-          <span class="speech-text" id="speech-text">"142 days left! Keep questing, you've got this!"</span>
-          <!-- Smooth Vector Comic Tail -->
-          <svg class="comic-tail-svg" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 0 C16 7 8 14 0 20 C9 14 17 8 20 0 Z" fill="#ffffff" stroke="#14102c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-            <path d="M19 0 L24 0" stroke="#ffffff" stroke-width="3" stroke-linecap="butt"/>
-          </svg>
+          <div class="bubble-arrow"></div>
+          <span class="speech-text" id="speech-text">142 days left!<br>You got this,<br>Scholar!</span>
         </div>
       </div>
 
@@ -1012,10 +950,10 @@
       const clean = text.replace(/^"|"$/g, '');
       const el = document.getElementById('speech-text');
       if (el) {
-        el.innerText = `"${clean}"`;
+        el.innerHTML = clean.replace(/\n/g, '<br>');
       } else {
         const bubble = document.getElementById('speech-bubble');
-        if (bubble) bubble.innerText = `"${clean}"`;
+        if (bubble) bubble.innerHTML = clean.replace(/\n/g, '<br>');
       }
     }
 
@@ -1036,7 +974,7 @@
 
       applyStateToUI();
       updateClock();
-      setEllieSpeech(`${curDays} days left! Keep questing, you've got this!`);
+      setEllieSpeech(`${curDays} days left!\nYou got this,\nScholar!`);
     }
 
     function saveSettings(andDownload = false) {
@@ -1058,7 +996,7 @@
       soundChime();
       spawnConfetti(35);
 
-      setEllieSpeech(`Custom quest saved! Working backward from ${state.goalTitle}!`);
+      setEllieSpeech(`Custom quest saved!\nWorking backward from\n${state.goalTitle}!`);
 
       if (andDownload) {
         setTimeout(() => {
@@ -1088,7 +1026,7 @@
 
     function applyStateToUI() {
       document.getElementById('card-goal-title').innerText = `🎓 ${state.goalTitle.toUpperCase()}`;
-      document.getElementById('gate-title-text').innerText = state.sprintTitle;
+      document.getElementById('gate-title-text').innerText = `Next Gate: ${state.sprintTitle}`;
       updateProgress();
       updateClock();
     }
@@ -1179,19 +1117,24 @@
         curMins = Math.floor((diff / 1000 / 60) % 60);
         curSecs = Math.floor((diff / 1000) % 60);
 
-        document.getElementById('cd-days').innerText = String(curDays).padStart(3, '0');
-        document.getElementById('cd-hours').innerText = String(curHours).padStart(2, '0');
-        document.getElementById('cd-mins').innerText = String(curMins).padStart(2, '0');
-        document.getElementById('cd-secs').innerText = String(curSecs).padStart(2, '0');
+        const dEl = document.getElementById('cd-days');
+        const hEl = document.getElementById('cd-hours');
+        const mEl = document.getElementById('cd-mins');
+        if (dEl) dEl.innerText = String(curDays).padStart(3, '0');
+        if (hEl) hEl.innerText = String(curHours).padStart(2, '0');
+        if (mEl) mEl.innerText = String(curMins).padStart(2, '0');
 
-        document.getElementById('island-text').innerText = `🎓 T-${curDays}D`;
-        document.getElementById('gate-label-text').innerText = `Active Goal • T - ${curDays} Days`;
+        const islandEl = document.getElementById('island-text');
+        if (islandEl) islandEl.innerText = `🎓 T-${curDays}D`;
       } else {
-        document.getElementById('cd-days').innerText = "000";
-        document.getElementById('cd-hours').innerText = "00";
-        document.getElementById('cd-mins').innerText = "00";
-        document.getElementById('cd-secs').innerText = "00";
-        document.getElementById('island-text').innerText = `🎓 REACHED!`;
+        const dEl = document.getElementById('cd-days');
+        const hEl = document.getElementById('cd-hours');
+        const mEl = document.getElementById('cd-mins');
+        if (dEl) dEl.innerText = "000";
+        if (hEl) hEl.innerText = "00";
+        if (mEl) mEl.innerText = "00";
+        const islandEl = document.getElementById('island-text');
+        if (islandEl) islandEl.innerText = `🎓 REACHED!`;
       }
     }
     setInterval(updateClock, 1000);
@@ -1208,11 +1151,11 @@
     function pokeEllie() {
       soundPop();
       const quotes = [
-        `${curDays} days left! Keep questing, you've got this!`,
-        `Next up: ${state.sprintTitle}!`,
-        `Every completed module brings you one step closer!`,
-        `Working backward from ${state.goalTitle} keeps you in control!`,
-        `You're already ${Math.round((state.credits / state.totalCredits) * 100)}% of the way there!`
+        `${curDays} days left!\nYou got this,\nScholar!`,
+        `Next up:\n${state.sprintTitle}!`,
+        `Every completed module\nbrings you closer!`,
+        `Working backward keeps\nyou in control!`,
+        `${Math.round((state.credits / state.totalCredits) * 100)}% complete!\nKeep questing!`
       ];
       quoteIndex = (quoteIndex + 1) % quotes.length;
       spriteIndex = (spriteIndex + 1) % ellieSprites.length;
@@ -1233,7 +1176,7 @@
         if (state.credits === state.totalCredits) {
           soundVictory();
           spawnConfetti(120);
-          setEllieSpeech(`CONGRATULATIONS! ${state.goalTitle} CONFERRED!`);
+          setEllieSpeech(`CONGRATULATIONS!\n${state.goalTitle}\nCONFERRED!`);
           document.getElementById('ellie-img').src = 'assets/ellie-celebrate.webp';
         }
       } else {
@@ -1244,9 +1187,14 @@
 
     function updateProgress() {
       const pct = Math.round((state.credits / state.totalCredits) * 100);
-      document.getElementById('credit-count').innerText = `${state.credits} / ${state.totalCredits}`;
-      document.getElementById('percent-label').innerText = `${pct}% • Level ${state.credits}`;
-      document.getElementById('xp-bar').style.width = `${pct}%`;
+      const textEl = document.getElementById('credit-status-text');
+      if (textEl) {
+        textEl.innerText = `${state.credits} / ${state.totalCredits} Credits Earned • ${pct}%`;
+      }
+      const barEl = document.getElementById('xp-bar');
+      if (barEl) {
+        barEl.style.width = `${pct}%`;
+      }
     }
 
     // --- 5. STAR PARTICLES CANVAS ---
@@ -1321,7 +1269,7 @@
     }
     animate();
 
-    // --- 6. DYNAMIC 1080x1920 WALLPAPER EXPORTER (USES CUSTOM USER STATE) ---
+    // --- 6. DYNAMIC 1080x1920 WALLPAPER EXPORTER (MATCHING SHOWCASE 1:1) ---
     function exportWallpaper() {
       soundVictory();
       const exportCanvas = document.createElement('canvas');
@@ -1329,169 +1277,135 @@
       exportCanvas.height = 1920;
       const ex = exportCanvas.getContext('2d');
 
+      // Deep OLED dark gradient background
       const grad = ex.createLinearGradient(0, 0, 0, 1920);
-      grad.addColorStop(0, '#151033');
-      grad.addColorStop(0.5, '#0e0b24');
-      grad.addColorStop(1, '#080614');
+      grad.addColorStop(0, '#0e0b24');
+      grad.addColorStop(0.5, '#080614');
+      grad.addColorStop(1, '#030208');
       ex.fillStyle = grad;
       ex.fillRect(0, 0, 1080, 1920);
 
+      // Stars
+      for (let i = 0; i < 200; i++) {
+        ex.fillStyle = ['#ffffff', '#ffd46c', '#65d7af', '#a69ebd'][Math.floor(Math.random() * 4)];
+        ex.globalAlpha = Math.random() * 0.7 + 0.3;
+        ex.beginPath();
+        ex.arc(Math.random() * 1080, Math.random() * 1920, Math.random() * 2.2 + 0.8, 0, Math.PI * 2);
+        ex.fill();
+      }
+      ex.globalAlpha = 1.0;
+
+      // Clock (Outfit font, large) & Date below
+      ex.fillStyle = '#ffffff';
+      ex.font = '300 160px "Outfit", sans-serif';
+      ex.textAlign = 'center';
+      ex.fillText(curTimeStr, 540, 340);
+
+      ex.fillStyle = 'rgba(255, 255, 255, 0.78)';
+      ex.font = '500 34px "Plus Jakarta Sans", sans-serif';
+      ex.fillText(curDateStr, 540, 405);
+
+      // Single Unified Frosted Glass Capsule
+      ex.fillStyle = 'rgba(35, 30, 62, 0.55)';
+      ex.beginPath();
+      ex.roundRect(80, 470, 920, 630, [40]);
+      ex.fill();
+      ex.lineWidth = 2.5;
+      ex.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+      ex.stroke();
+
+      // Top Header Pill
+      ex.fillStyle = 'rgba(255, 255, 255, 0.12)';
+      ex.beginPath();
+      ex.roundRect(260, 515, 560, 56, [28]);
+      ex.fill();
+      ex.fillStyle = '#ffffff';
+      ex.font = '700 22px "Plus Jakarta Sans", sans-serif';
+      ex.fillText(`🎓 ${state.goalTitle.toUpperCase()}`, 540, 552);
+
+      // Inline Countdown Numbers
+      const cdText = `${String(curDays).padStart(3, '0')}  :  ${String(curHours).padStart(2, '0')}  :  ${String(curMins).padStart(2, '0')}`;
+      ex.fillStyle = '#ffffff';
+      ex.font = '700 90px "Outfit", sans-serif';
+      ex.fillText(cdText, 540, 690);
+
+      // Sublabels under numbers
+      ex.fillStyle = 'rgba(255, 255, 255, 0.55)';
+      ex.font = '600 20px "Plus Jakarta Sans", sans-serif';
+      ex.fillText('DAYS                HRS                MIN', 540, 735);
+
+      // Progress Bar
+      const pct = Math.round((state.credits / state.totalCredits) * 100);
+      ex.fillStyle = 'rgba(0, 0, 0, 0.45)';
+      ex.beginPath();
+      ex.roundRect(140, 810, 800, 34, [17]);
+      ex.fill();
+
+      const barGrad = ex.createLinearGradient(140, 0, 940, 0);
+      barGrad.addColorStop(0, '#65d7af');
+      barGrad.addColorStop(1, '#ffd46c');
+      ex.fillStyle = barGrad;
+      ex.beginPath();
+      ex.roundRect(140, 810, 800 * (state.credits / state.totalCredits), 34, [17]);
+      ex.fill();
+
+      // Progress text below bar
+      ex.fillStyle = 'rgba(255, 255, 255, 0.88)';
+      ex.font = '600 24px "Plus Jakarta Sans", sans-serif';
+      ex.fillText(`${state.credits} / ${state.totalCredits} Credits Earned • ${pct}%`, 540, 885);
+
+      // Integrated Next Gate Chip inside card
+      ex.fillStyle = 'rgba(95, 224, 219, 0.1)';
+      ex.beginPath();
+      ex.roundRect(140, 945, 800, 85, [42]);
+      ex.fill();
+      ex.lineWidth = 2;
+      ex.strokeStyle = 'rgba(95, 224, 219, 0.3)';
+      ex.stroke();
+
+      ex.fillStyle = '#8beee9';
+      ex.font = '700 24px "Plus Jakarta Sans", sans-serif';
+      ex.fillText(`⚔️ Next Gate: ${state.sprintTitle}`, 540, 998);
+
+      // Bottom Area: Ellie Mascot and Frosted Glass Speech Bubble
       const ellieImg = new Image();
       ellieImg.crossOrigin = 'anonymous';
-      const bgImg = new Image();
-      bgImg.crossOrigin = 'anonymous';
 
-      let bgLoaded = false, ellieLoaded = false;
-      function renderAndDownload() {
-        if (!bgLoaded || !ellieLoaded) return;
+      ellieImg.onload = () => {
+        // Ellie on the lower left
+        ex.drawImage(ellieImg, 80, 1170, 420, 490);
 
-        // Modern FLUX-generated fantasy castle & cosmic nebula wallpaper background
+        // Translucent frosted glass speech bubble on the right
         ex.save();
-        ex.globalAlpha = 0.65;
-        try {
-          ex.drawImage(bgImg, 0, 0, 1080, 1920);
-        } catch(e) {}
-        ex.restore();
-
-        // Dark gradient overlay for ultra-crisp widget legibility
-        const vGrad = ex.createLinearGradient(0, 0, 0, 1920);
-        vGrad.addColorStop(0, 'rgba(12, 9, 28, 0.45)');
-        vGrad.addColorStop(0.5, 'rgba(18, 14, 42, 0.35)');
-        vGrad.addColorStop(1, 'rgba(8, 6, 18, 0.85)');
-        ex.fillStyle = vGrad;
-        ex.fillRect(0, 0, 1080, 1920);
-
-        // Stars over the backdrop
-        for (let i = 0; i < 220; i++) {
-          ex.fillStyle = ['#ffffff', '#ffd46c', '#65d7af'][Math.floor(Math.random() * 3)];
-          ex.beginPath();
-          ex.arc(Math.random() * 1080, Math.random() * 1920, Math.random() * 2.5 + 0.8, 0, Math.PI * 2);
-          ex.fill();
-        }
-
-        // Clock & Date
-        ex.fillStyle = '#ffd46c';
-        ex.font = '600 32px "Plus Jakarta Sans", sans-serif';
-        ex.textAlign = 'center';
-        ex.fillText(curDateStr, 540, 220);
-
-        ex.fillStyle = '#ffffff';
-        ex.font = '300 160px "Outfit", sans-serif';
-        ex.fillText(curTimeStr, 540, 390);
-
-        // Glass Card
-        ex.fillStyle = 'rgba(26, 22, 53, 0.78)';
+        ex.fillStyle = 'rgba(35, 30, 62, 0.72)';
         ex.beginPath();
-        ex.roundRect(80, 480, 920, 620, [36]);
+        ex.roundRect(510, 1260, 490, 220, [32]);
         ex.fill();
-        ex.lineWidth = 3;
-        ex.strokeStyle = 'rgba(255, 212, 108, 0.3)';
+        ex.lineWidth = 2.5;
+        ex.strokeStyle = 'rgba(255, 255, 255, 0.25)';
         ex.stroke();
 
-        // Card Badge with custom user goal title
-        ex.fillStyle = 'rgba(255, 212, 108, 0.15)';
+        // Speech bubble pointer arrow pointing to Ellie
+        ex.fillStyle = 'rgba(35, 30, 62, 0.72)';
         ex.beginPath();
-        ex.roundRect(140, 530, 480, 52, [26]);
-        ex.fill();
-        ex.fillStyle = '#ffd46c';
-        ex.font = '700 20px "Plus Jakarta Sans", sans-serif';
-        ex.textAlign = 'center';
-        ex.fillText(`🎓 ${state.goalTitle.toUpperCase()}`, 380, 565);
-
-        // Countdown Values
-        const dStr = `${String(curDays).padStart(3, '0')}d  :  ${String(curHours).padStart(2, '0')}h  :  ${String(curMins).padStart(2, '0')}m  :  ${String(curSecs).padStart(2, '0')}s`;
-        ex.fillStyle = '#ffffff';
-        ex.font = '700 68px "Outfit", sans-serif';
-        ex.fillText(dStr, 540, 720);
-
-        // Progress Bar with custom user credits
-        const pct = Math.round((state.credits / state.totalCredits) * 100);
-        ex.fillStyle = '#f3efff';
-        ex.font = '600 26px "Plus Jakarta Sans", sans-serif';
-        ex.fillText(`CREDITS EARNED: ${state.credits} / ${state.totalCredits} (${pct}%)`, 540, 880);
-
-        ex.fillStyle = 'rgba(0,0,0,0.45)';
-        ex.beginPath();
-        ex.roundRect(160, 920, 760, 36, [18]);
-        ex.fill();
-
-        const barGrad = ex.createLinearGradient(160, 0, 920, 0);
-        barGrad.addColorStop(0, '#65d7af');
-        barGrad.addColorStop(1, '#ffd46c');
-        ex.fillStyle = barGrad;
-        ex.beginPath();
-        ex.roundRect(160, 920, 760 * (state.credits / state.totalCredits), 36, [18]);
-        ex.fill();
-
-        // Active Goal Pill with custom goal title
-        ex.fillStyle = 'rgba(22, 18, 46, 0.85)';
-        ex.beginPath();
-        ex.roundRect(80, 1140, 920, 120, [24]);
-        ex.fill();
-        ex.lineWidth = 2;
-        ex.strokeStyle = 'rgba(95, 224, 219, 0.35)';
-        ex.stroke();
-
-        ex.fillStyle = '#5fe0db';
-        ex.font = '700 20px "Plus Jakarta Sans", sans-serif';
-        ex.fillText(`ACTIVE GOAL • T - ${curDays} DAYS`, 540, 1185);
-        ex.fillStyle = '#ffffff';
-        ex.font = '600 26px "Plus Jakarta Sans", sans-serif';
-        ex.fillText(`⚔️ ${state.sprintTitle}`, 540, 1230);
-
-        // Bigger Ellie Mascot on Wallpaper Canvas (width: 460, height: 530)
-        ex.drawImage(ellieImg, 50, 1200, 460, 530);
-
-        // Smooth Comic-Book Speech Bubble (Higher, near Ellie's face)
-        ex.save();
-        // Comic shadow
-        ex.fillStyle = '#14102c';
-        ex.beginPath();
-        ex.roundRect(508, 1268, 490, 210, [28]);
-        ex.fill();
-
-        // White bubble fill
-        ex.fillStyle = '#ffffff';
-        ex.beginPath();
-        ex.roundRect(500, 1260, 490, 210, [28]);
-        ex.fill();
-
-        // Dark ink border
-        ex.lineWidth = 6;
-        ex.strokeStyle = '#14102c';
-        ex.stroke();
-
-        // Comic Tail (curved beak pointing down-left to Ellie's face)
-        ex.fillStyle = '#ffffff';
-        ex.beginPath();
-        ex.moveTo(535, 1465);
-        ex.lineTo(440, 1515);
-        ex.lineTo(565, 1465);
+        ex.moveTo(512, 1370);
+        ex.lineTo(470, 1395);
+        ex.lineTo(512, 1420);
         ex.closePath();
         ex.fill();
         ex.stroke();
 
-        // Erase inner seam between tail and bubble
+        // Dialogue text inside bubble
         ex.fillStyle = '#ffffff';
-        ex.fillRect(535, 1455, 32, 15);
-
-        // Speaker Tag: ELLIE (Clean, no star)
-        ex.fillStyle = '#6d28d9';
-        ex.font = '800 24px "Plus Jakarta Sans", sans-serif';
+        ex.font = '700 32px "Plus Jakarta Sans", sans-serif';
         ex.textAlign = 'left';
-        ex.fillText('ELLIE', 540, 1318);
-
-        // Speech Text
-        ex.fillStyle = '#14102c';
-        ex.font = '700 30px "Plus Jakarta Sans", sans-serif';
-        ex.fillText('Keep questing, Scholar!', 540, 1370);
-        ex.font = '600 24px "Plus Jakarta Sans", sans-serif';
-        ex.fillStyle = '#4a4268';
-        ex.fillText(`"${curDays} days to ${state.goalTitle.split('•')[0].trim()}!"`, 540, 1420);
+        ex.fillText(`${curDays} days left!`, 550, 1335);
+        ex.fillText('You got this,', 550, 1385);
+        ex.fillText('Scholar!', 550, 1435);
         ex.restore();
 
         // Home indicator bar
-        ex.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ex.fillStyle = 'rgba(255, 255, 255, 0.6)';
         ex.beginPath();
         ex.roundRect(390, 1845, 300, 10, [5]);
         ex.fill();
@@ -1500,14 +1414,8 @@
         link.download = `quest-wallpaper-${state.goalTitle.toLowerCase().replace(/[^a-z0-9]/g, '-')}-1080x1920.png`;
         link.href = exportCanvas.toDataURL('image/png');
         link.click();
-      }
+      };
 
-      bgImg.onload = () => { bgLoaded = true; renderAndDownload(); };
-      bgImg.onerror = () => { bgLoaded = true; renderAndDownload(); };
-      ellieImg.onload = () => { ellieLoaded = true; renderAndDownload(); };
-      ellieImg.onerror = () => { ellieLoaded = true; renderAndDownload(); };
-
-      bgImg.src = 'assets/dq_world_flux.jpg';
       ellieImg.src = 'assets/ellie-welcome.webp';
     }
 
