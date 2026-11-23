@@ -43,7 +43,7 @@
     }
 
     body {
-      background: radial-gradient(circle at 50% 8%, #1e1744 0%, #080612 100%);
+      background: #080612;
       color: var(--fg);
       font-family: var(--font-body);
       min-height: 100vh;
@@ -54,6 +54,7 @@
       padding: 10px 16px 14px;
       box-sizing: border-box;
       overflow-x: hidden;
+      position: relative;
     }
 
     /* Top Navigation Bar (Lapse / Landpack style) */
@@ -268,6 +269,52 @@
       .showcase-title {
         font-size: 20px;
       }
+    }
+
+    /* Ambient Homeworld Backdrop (Diploma Quest Overworld Skyline) */
+    .site-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+      background: 
+        radial-gradient(circle at 50% -12%, rgba(125, 68, 165, 0.42) 0%, rgba(22, 18, 48, 0.7) 45%, #080614 100%);
+    }
+    .site-backdrop::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 85% 20%, rgba(255, 212, 108, 0.08) 0%, transparent 45%),
+        radial-gradient(ellipse at 15% 30%, rgba(95, 224, 219, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 90%, rgba(131, 99, 171, 0.18) 0%, transparent 60%);
+    }
+    .site-backdrop::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 46vh;
+      min-height: 280px;
+      background: url('assets/command-center-far.svg') center bottom / cover no-repeat;
+      opacity: 0.18;
+      filter: blur(1.2px) saturate(1.3);
+      mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 45%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 45%, transparent 100%);
+    }
+
+    /* Phone Wallpaper: Subtle Diploma Quest Fantasy Study & Castle Vista */
+    .phone-wallpaper {
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(180deg, rgba(14, 11, 32, 0.72) 0%, rgba(18, 14, 42, 0.82) 42%, rgba(10, 8, 22, 0.94) 100%),
+        url('assets/adventure-study.svg') center bottom / cover no-repeat;
+      filter: saturate(1.2) brightness(0.85);
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* Dynamic Island */
@@ -545,55 +592,100 @@
     .mascot-area {
       margin-top: auto;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 14px 6px;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 10px 4px 8px;
       z-index: 10;
-      gap: 10px;
+      gap: 8px;
+      position: relative;
     }
 
     .mascot-img-wrap {
-      width: 82px;
-      height: 92px;
+      width: 116px;
+      height: 130px;
       flex-shrink: 0;
       position: relative;
       cursor: pointer;
       transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      margin-bottom: -2px;
     }
     .mascot-img-wrap:active {
-      transform: scale(0.92) rotate(-3deg);
+      transform: scale(0.94) rotate(-3deg);
     }
     .mascot-img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.65));
     }
 
+    /* Comic-Book Speech Balloon */
     .speech-bubble {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      color: #120e28;
-      border-radius: 15px;
-      padding: 9px 11px;
-      font-size: 10px;
-      font-weight: 600;
-      line-height: 1.35;
-      position: relative;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-      cursor: pointer;
+      background: #ffffff;
+      border: 2.5px solid #14102c;
+      border-radius: 16px 16px 16px 4px;
+      padding: 8px 10px 8px 11px;
+      box-shadow: 3.5px 3.5px 0px #14102c, 0 10px 24px rgba(0, 0, 0, 0.45);
+      margin-bottom: 34px;
       flex: 1;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-align: left;
     }
+    .speech-bubble:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 4px 4px 0px #14102c, 0 14px 28px rgba(0, 0, 0, 0.55);
+    }
+    .speech-bubble:active {
+      transform: scale(0.97);
+    }
+    /* Comic-Book Pointer Tail (Beak) pointing down-left towards Ellie */
     .speech-bubble::before {
       content: "";
       position: absolute;
-      left: -7px;
-      bottom: 20px;
-      width: 0; height: 0;
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-right: 7px solid rgba(255, 255, 255, 0.92);
+      bottom: -13px;
+      left: 8px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 14px 11px 0 0;
+      border-color: #14102c transparent transparent transparent;
+      transform: skewX(-14deg);
+    }
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -9.5px;
+      left: 9.5px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 11px 8.5px 0 0;
+      border-color: #ffffff transparent transparent transparent;
+      transform: skewX(-14deg);
+    }
+
+    .comic-speaker {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 7.5px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      color: #6d28d9;
+      background: rgba(109, 40, 217, 0.08);
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+    .speech-text {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      color: #14102c;
+      line-height: 1.32;
+      display: block;
     }
 
     .home-bar {
@@ -718,6 +810,8 @@
   </style>
 </head>
 <body>
+  <!-- Ambient Homeworld Backdrop (Diploma Quest Overworld Skyline) -->
+  <div class="site-backdrop" aria-hidden="true"></div>
 
   <!-- Top Navigation Bar (Lapse style) -->
   <header class="top-nav">
@@ -756,6 +850,9 @@
   <!-- Mobile Phone Mockup Device -->
   <div class="device-stage">
     <div class="phone-wrapper" id="phone">
+      <!-- Subtle Diploma Quest Fantasy Study & Castle Vista Wallpaper -->
+      <div class="phone-wallpaper" aria-hidden="true"></div>
+
       <div class="dynamic-island">
         <span class="island-dot"></span>
         <span id="island-text">🎓 T-142D</span>
@@ -841,8 +938,9 @@
           <img src="assets/ellie-welcome.webp" class="mascot-img" id="ellie-img" alt="Ellie the Mascot">
         </div>
 
-        <div class="speech-bubble" id="speech-bubble" onclick="pokeEllie()">
-          "142 days left! Keep questing, you've got this!"
+        <div class="speech-bubble" id="speech-bubble" onclick="pokeEllie()" title="Click to hear Ellie's tips!">
+          <span class="comic-speaker">✦ ELLIE</span>
+          <span class="speech-text" id="speech-text">"142 days left! Keep questing, you've got this!"</span>
         </div>
       </div>
 
@@ -909,6 +1007,17 @@
       totalCredits: 24
     };
 
+    function setEllieSpeech(text) {
+      const clean = text.replace(/^"|"$/g, '');
+      const el = document.getElementById('speech-text');
+      if (el) {
+        el.innerText = `"${clean}"`;
+      } else {
+        const bubble = document.getElementById('speech-bubble');
+        if (bubble) bubble.innerText = `"${clean}"`;
+      }
+    }
+
     function loadState() {
       try {
         const saved = localStorage.getItem('quest_to_the_cap_state');
@@ -926,7 +1035,7 @@
 
       applyStateToUI();
       updateClock();
-      document.getElementById('speech-bubble').innerText = `"${curDays} days left! Keep questing, you've got this!"`;
+      setEllieSpeech(`${curDays} days left! Keep questing, you've got this!`);
     }
 
     function saveSettings(andDownload = false) {
@@ -948,7 +1057,7 @@
       soundChime();
       spawnConfetti(35);
 
-      document.getElementById('speech-bubble').innerText = `"Custom quest saved! Working backward from ${state.goalTitle}!"`;
+      setEllieSpeech(`Custom quest saved! Working backward from ${state.goalTitle}!`);
 
       if (andDownload) {
         setTimeout(() => {
@@ -1107,7 +1216,7 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       spriteIndex = (spriteIndex + 1) % ellieSprites.length;
 
-      document.getElementById('speech-bubble').innerText = `"${quotes[quoteIndex]}"`;
+      setEllieSpeech(quotes[quoteIndex]);
       const img = document.getElementById('ellie-img');
       img.src = ellieSprites[spriteIndex];
       img.parentElement.style.transform = 'scale(1.1) rotate(3deg)';
@@ -1123,7 +1232,7 @@
         if (state.credits === state.totalCredits) {
           soundVictory();
           spawnConfetti(120);
-          document.getElementById('speech-bubble').innerText = `"CONGRATULATIONS! ${state.goalTitle} CONFERRED!"`;
+          setEllieSpeech(`CONGRATULATIONS! ${state.goalTitle} CONFERRED!`);
           document.getElementById('ellie-img').src = 'assets/ellie-celebrate.webp';
         }
       } else {
@@ -1226,109 +1335,170 @@
       ex.fillStyle = grad;
       ex.fillRect(0, 0, 1080, 1920);
 
-      for (let i = 0; i < 220; i++) {
-        ex.fillStyle = ['#ffffff', '#ffd46c', '#65d7af'][Math.floor(Math.random() * 3)];
-        ex.beginPath();
-        ex.arc(Math.random() * 1080, Math.random() * 1920, Math.random() * 2.5 + 0.8, 0, Math.PI * 2);
-        ex.fill();
-      }
-
-      ex.fillStyle = '#ffd46c';
-      ex.font = '600 32px "Plus Jakarta Sans", sans-serif';
-      ex.textAlign = 'center';
-      ex.fillText(curDateStr, 540, 220);
-
-      ex.fillStyle = '#ffffff';
-      ex.font = '300 160px "Outfit", sans-serif';
-      ex.fillText(curTimeStr, 540, 390);
-
-      ex.fillStyle = 'rgba(26, 22, 53, 0.75)';
-      ex.beginPath();
-      ex.roundRect(80, 480, 920, 620, [36]);
-      ex.fill();
-      ex.lineWidth = 3;
-      ex.strokeStyle = 'rgba(255, 212, 108, 0.3)';
-      ex.stroke();
-
-      // Card Badge with custom user goal title
-      ex.fillStyle = 'rgba(255, 212, 108, 0.15)';
-      ex.beginPath();
-      ex.roundRect(140, 530, 480, 52, [26]);
-      ex.fill();
-      ex.fillStyle = '#ffd46c';
-      ex.font = '700 20px "Plus Jakarta Sans", sans-serif';
-      ex.textAlign = 'center';
-      ex.fillText(`🎓 ${state.goalTitle.toUpperCase()}`, 380, 565);
-
-      // Countdown Values
-      const dStr = `${String(curDays).padStart(3, '0')}d  :  ${String(curHours).padStart(2, '0')}h  :  ${String(curMins).padStart(2, '0')}m  :  ${String(curSecs).padStart(2, '0')}s`;
-      ex.fillStyle = '#ffffff';
-      ex.font = '700 68px "Outfit", sans-serif';
-      ex.fillText(dStr, 540, 720);
-
-      // Progress Bar with custom user credits
-      const pct = Math.round((state.credits / state.totalCredits) * 100);
-      ex.fillStyle = '#f3efff';
-      ex.font = '600 26px "Plus Jakarta Sans", sans-serif';
-      ex.fillText(`CREDITS EARNED: ${state.credits} / ${state.totalCredits} (${pct}%)`, 540, 880);
-
-      ex.fillStyle = 'rgba(0,0,0,0.45)';
-      ex.beginPath();
-      ex.roundRect(160, 920, 760, 36, [18]);
-      ex.fill();
-
-      const barGrad = ex.createLinearGradient(160, 0, 920, 0);
-      barGrad.addColorStop(0, '#65d7af');
-      barGrad.addColorStop(1, '#ffd46c');
-      ex.fillStyle = barGrad;
-      ex.beginPath();
-      ex.roundRect(160, 920, 760 * (state.credits / state.totalCredits), 36, [18]);
-      ex.fill();
-
-      // Active Gate Pill with custom sprint title
-      ex.fillStyle = 'rgba(22, 18, 46, 0.85)';
-      ex.beginPath();
-      ex.roundRect(80, 1140, 920, 120, [24]);
-      ex.fill();
-      ex.lineWidth = 2;
-      ex.strokeStyle = 'rgba(95, 224, 219, 0.35)';
-      ex.stroke();
-
-      ex.fillStyle = '#5fe0db';
-      ex.font = '700 20px "Plus Jakarta Sans", sans-serif';
-      ex.fillText(`ACTIVE SPRINT • T - ${curDays} DAYS`, 540, 1185);
-      ex.fillStyle = '#ffffff';
-      ex.font = '600 26px "Plus Jakarta Sans", sans-serif';
-      ex.fillText(`⚔️ ${state.sprintTitle}`, 540, 1230);
-
       const ellieImg = new Image();
       ellieImg.crossOrigin = 'anonymous';
-      ellieImg.onload = () => {
-        ex.drawImage(ellieImg, 140, 1310, 300, 350);
+      const bgImg = new Image();
+      bgImg.crossOrigin = 'anonymous';
 
-        ex.fillStyle = 'rgba(255, 255, 255, 0.95)';
+      let bgLoaded = false, ellieLoaded = false;
+      function renderAndDownload() {
+        if (!bgLoaded || !ellieLoaded) return;
+
+        // Subtle Diploma Quest world backdrop on the wallpaper
+        ex.save();
+        ex.globalAlpha = 0.26;
+        try {
+          ex.drawImage(bgImg, -180, 500, 1440, 1500);
+        } catch(e) {}
+        ex.restore();
+
+        // Stars over the backdrop
+        for (let i = 0; i < 220; i++) {
+          ex.fillStyle = ['#ffffff', '#ffd46c', '#65d7af'][Math.floor(Math.random() * 3)];
+          ex.beginPath();
+          ex.arc(Math.random() * 1080, Math.random() * 1920, Math.random() * 2.5 + 0.8, 0, Math.PI * 2);
+          ex.fill();
+        }
+
+        // Clock & Date
+        ex.fillStyle = '#ffd46c';
+        ex.font = '600 32px "Plus Jakarta Sans", sans-serif';
+        ex.textAlign = 'center';
+        ex.fillText(curDateStr, 540, 220);
+
+        ex.fillStyle = '#ffffff';
+        ex.font = '300 160px "Outfit", sans-serif';
+        ex.fillText(curTimeStr, 540, 390);
+
+        // Glass Card
+        ex.fillStyle = 'rgba(26, 22, 53, 0.78)';
         ex.beginPath();
-        ex.roundRect(470, 1380, 490, 170, [28]);
+        ex.roundRect(80, 480, 920, 620, [36]);
+        ex.fill();
+        ex.lineWidth = 3;
+        ex.strokeStyle = 'rgba(255, 212, 108, 0.3)';
+        ex.stroke();
+
+        // Card Badge with custom user goal title
+        ex.fillStyle = 'rgba(255, 212, 108, 0.15)';
+        ex.beginPath();
+        ex.roundRect(140, 530, 480, 52, [26]);
+        ex.fill();
+        ex.fillStyle = '#ffd46c';
+        ex.font = '700 20px "Plus Jakarta Sans", sans-serif';
+        ex.textAlign = 'center';
+        ex.fillText(`🎓 ${state.goalTitle.toUpperCase()}`, 380, 565);
+
+        // Countdown Values
+        const dStr = `${String(curDays).padStart(3, '0')}d  :  ${String(curHours).padStart(2, '0')}h  :  ${String(curMins).padStart(2, '0')}m  :  ${String(curSecs).padStart(2, '0')}s`;
+        ex.fillStyle = '#ffffff';
+        ex.font = '700 68px "Outfit", sans-serif';
+        ex.fillText(dStr, 540, 720);
+
+        // Progress Bar with custom user credits
+        const pct = Math.round((state.credits / state.totalCredits) * 100);
+        ex.fillStyle = '#f3efff';
+        ex.font = '600 26px "Plus Jakarta Sans", sans-serif';
+        ex.fillText(`CREDITS EARNED: ${state.credits} / ${state.totalCredits} (${pct}%)`, 540, 880);
+
+        ex.fillStyle = 'rgba(0,0,0,0.45)';
+        ex.beginPath();
+        ex.roundRect(160, 920, 760, 36, [18]);
         ex.fill();
 
-        ex.fillStyle = '#120e28';
-        ex.font = '700 28px "Plus Jakarta Sans", sans-serif';
-        ex.textAlign = 'left';
-        ex.fillText('Keep questing, Scholar!', 510, 1445);
-        ex.font = '500 24px "Plus Jakarta Sans", sans-serif';
-        ex.fillStyle = '#4a4268';
-        ex.fillText(`${curDays} days to ${state.goalTitle.split('•')[0].trim()}!`, 510, 1495);
+        const barGrad = ex.createLinearGradient(160, 0, 920, 0);
+        barGrad.addColorStop(0, '#65d7af');
+        barGrad.addColorStop(1, '#ffd46c');
+        ex.fillStyle = barGrad;
+        ex.beginPath();
+        ex.roundRect(160, 920, 760 * (state.credits / state.totalCredits), 36, [18]);
+        ex.fill();
 
+        // Active Gate Pill with custom sprint title
+        ex.fillStyle = 'rgba(22, 18, 46, 0.85)';
+        ex.beginPath();
+        ex.roundRect(80, 1140, 920, 120, [24]);
+        ex.fill();
+        ex.lineWidth = 2;
+        ex.strokeStyle = 'rgba(95, 224, 219, 0.35)';
+        ex.stroke();
+
+        ex.fillStyle = '#5fe0db';
+        ex.font = '700 20px "Plus Jakarta Sans", sans-serif';
+        ex.fillText(`ACTIVE SPRINT • T - ${curDays} DAYS`, 540, 1185);
+        ex.fillStyle = '#ffffff';
+        ex.font = '600 26px "Plus Jakarta Sans", sans-serif';
+        ex.fillText(`⚔️ ${state.sprintTitle}`, 540, 1230);
+
+        // Larger Ellie Mascot (x: 70, y: 1240, width: 420, height: 490)
+        ex.drawImage(ellieImg, 70, 1240, 420, 490);
+
+        // Comic-Book Speech Bubble (Higher, near Ellie's head)
+        ex.save();
+        // Comic shadow
+        ex.fillStyle = '#14102c';
+        ex.beginPath();
+        ex.roundRect(498, 1310, 500, 210, [28]);
+        ex.fill();
+
+        // White bubble fill
+        ex.fillStyle = '#ffffff';
+        ex.beginPath();
+        ex.roundRect(490, 1302, 500, 210, [28]);
+        ex.fill();
+
+        // Dark ink border
+        ex.lineWidth = 6;
+        ex.strokeStyle = '#14102c';
+        ex.stroke();
+
+        // Comic Tail (beak pointing down-left to Ellie's face)
+        ex.fillStyle = '#ffffff';
+        ex.beginPath();
+        ex.moveTo(525, 1510);
+        ex.lineTo(440, 1565);
+        ex.lineTo(555, 1510);
+        ex.closePath();
+        ex.fill();
+        ex.stroke();
+
+        // Erase inner seam between tail and bubble
+        ex.fillStyle = '#ffffff';
+        ex.fillRect(525, 1498, 30, 15);
+
+        // Speaker Tag: ✦ ELLIE
+        ex.fillStyle = '#6d28d9';
+        ex.font = '800 24px "Plus Jakarta Sans", sans-serif';
+        ex.textAlign = 'left';
+        ex.fillText('✦ ELLIE', 530, 1360);
+
+        // Speech Text
+        ex.fillStyle = '#14102c';
+        ex.font = '700 30px "Plus Jakarta Sans", sans-serif';
+        ex.fillText('Keep questing, Scholar!', 530, 1415);
+        ex.font = '600 24px "Plus Jakarta Sans", sans-serif';
+        ex.fillStyle = '#4a4268';
+        ex.fillText(`"${curDays} days to ${state.goalTitle.split('•')[0].trim()}!"`, 530, 1465);
+        ex.restore();
+
+        // Home indicator bar
         ex.fillStyle = 'rgba(255, 255, 255, 0.5)';
         ex.beginPath();
-        ex.roundRect(390, 1830, 300, 10, [5]);
+        ex.roundRect(390, 1845, 300, 10, [5]);
         ex.fill();
 
         const link = document.createElement('a');
         link.download = `quest-wallpaper-${state.goalTitle.toLowerCase().replace(/[^a-z0-9]/g, '-')}-1080x1920.png`;
         link.href = exportCanvas.toDataURL('image/png');
         link.click();
-      };
+      }
+
+      bgImg.onload = () => { bgLoaded = true; renderAndDownload(); };
+      bgImg.onerror = () => { bgLoaded = true; renderAndDownload(); };
+      ellieImg.onload = () => { ellieLoaded = true; renderAndDownload(); };
+      ellieImg.onerror = () => { ellieLoaded = true; renderAndDownload(); };
+
+      bgImg.src = 'assets/adventure-study.svg';
       ellieImg.src = 'assets/ellie-welcome.webp';
     }
 
