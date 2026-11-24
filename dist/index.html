@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quest to the Cap: Modern Graduation Countdown Lock Screen</title>
   
   <meta name="description" content="Working backward from graduation day: modern glassmorphic countdown lock screen with customizable milestones, companion Ellie, and instant wallpaper export.">
@@ -309,7 +309,7 @@
     .phone-wallpaper {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, #0e0b24 0%, #080614 60%, #030208 100%);
+      background: #100d23 url("assets/campus-night.webp") center / cover no-repeat;
       pointer-events: none;
       z-index: 0;
     }
@@ -661,7 +661,7 @@
       justify-content: center;
       padding: 16px;
     }
-    .modal-overlay.open {
+    .modal-overlay[open] {
       display: flex;
     }
     .modal-box {
@@ -758,6 +758,14 @@
       padding: 10px 14px;
       font-size: 12.5px;
     }
+  .widget-guide {max-width:42rem;margin:1rem auto;padding:1.25rem;text-align:left;background:#181329;border:2px solid #64547a;color:#f9f4ec}.widget-guide h2{color:#ffd46c}.widget-guide li,.widget-guide p{margin:.7em 0;line-height:1.55}.widget-guide ol{padding-left:1.4em}
+  .speech-text {white-space:pre-line;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .deadline-pill,#card-goal-title {max-width:100%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .modal-actions .btn {min-height:44px;padding:.65rem;background:#38264d;border:2px solid #9b82af;color:#fff;font:inherit;cursor:pointer}
+  .modal-actions .modal-save-btn {background:#ffd46c;color:#241633}
+  .modal-box {max-height:90dvh;overflow-y:auto}.hero-ctas,.top-nav {flex-wrap:wrap}
+  @media(max-width:350px){.top-nav{padding-inline:6px;gap:4px}.nav-actions{gap:3px}.brand-title{font-size:14px}}
+  .modal-overlay {width:100%;height:100%;max-width:none;max-height:none;border:0;margin:0;color:inherit}body:has(dialog[open]){overflow:hidden}
   </style>
 </head>
 <body>
@@ -793,8 +801,9 @@
         ⚙️ Customize Lock Screen
       </button>
       <button class="btn-hero-secondary" onclick="exportWallpaper()" title="Download high-resolution 1080×1920 wallpaper">
-        📥 Save Wallpaper (1080×1920)
+        Save background art
       </button>
+      <a class="btn-hero-secondary" href="#widget-title">Set up countdown</a>
     </div>
   </section>
 
@@ -887,46 +896,59 @@
     </div>
   </div>
 
+  <section class="widget-guide" aria-labelledby="widget-title">
+    <h2 id="widget-title">Keep the countdown ticking</h2>
+    <p>The wallpaper is art only. On iPhone, pair it with a Scriptable Lock Screen widget for your saved goal.</p>
+    <ol><li>Customize your goal and save the date.</li><li>Install Scriptable. Save the script below in iCloud Drive → Scriptable and open it in the app.</li><li>Touch and hold the Lock Screen → Customize → Add Widgets → Scriptable. Add the rectangular widget, tap it and select Quest Countdown.</li></ol>
+    <button class="btn-hero-secondary" onclick="downloadWidget()">Download iPhone countdown script</button>
+    <p>Changed the deadline? Replace the script.</p>
+    <details><summary>Android · Set up a live wallpaper</summary>
+      <ol><li>Save your goal and download the background art above.</li><li>In KLWP Live Wallpaper Maker, start a blank wallpaper. Set the background to the downloaded image and add a Text item. Paste the formula below into its text editor.</li><li>Save in KLWP and apply through the Android wallpaper picker. Choose Home and Lock screens if offered. If your phone offers Home only, this wallpaper cannot update on its Lock Screen.</li></ol>
+      <label for="android-formula">Countdown formula for your saved deadline</label>
+      <textarea id="android-formula" readonly rows="3" style="display:block;width:100%;margin:.5rem 0" onclick="this.select()"></textarea>
+      <p>Copy the formula again after changing the deadline. The image alone never counts down.</p>
+    </details>
+  </section>
   <!-- Modal / Drawer for Customizing the Quest -->
-  <div class="modal-overlay" id="settings-modal" onclick="closeSettingsIfBackdrop(event)">
+  <dialog aria-labelledby="settings-title" class="modal-overlay" id="settings-modal" onclick="closeSettingsIfBackdrop(event)">
     <div class="modal-box">
       <div class="modal-header">
         <div>
-          <h2 class="modal-title">⚙️ Personalize Your Lock Screen</h2>
-          <p class="modal-desc">Set your goal, deadline, milestones & credits to generate your personal 1080×1920 mobile wallpaper.</p>
+          <h2 id="settings-title" class="modal-title">⚙️ Personalize Your Lock Screen</h2>
+          <p class="modal-desc">Save your goal for the preview and iPhone widget. The wallpaper is background art only.</p>
         </div>
-        <button class="modal-close" onclick="closeSettings()">✕</button>
+        <button aria-label="Close settings" class="modal-close" onclick="closeSettings()">✕</button>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Goal / Milestone Name</label>
+        <label class="form-label" for="input-goal">Goal / Milestone Name</label>
         <input type="text" class="form-input" id="input-goal" value="GRADUATION DAY • MAY 15" placeholder="e.g. B.S. IN COMPUTER SCIENCE">
       </div>
 
       <div class="form-group">
-        <label class="form-label">Target Deadline Date</label>
+        <label class="form-label" for="input-date">Target Deadline Date</label>
         <input type="date" class="form-input" id="input-date">
       </div>
 
       <div class="form-group">
-        <label class="form-label">Current Goal / Next Milestone</label>
+        <label class="form-label" for="input-sprint">Current Goal / Next Milestone</label>
         <input type="text" class="form-input" id="input-sprint" value="Module 4: Calculus Capstone" placeholder="e.g. Thesis Draft 1">
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Credits Earned</label>
+          <label class="form-label" for="input-credits">Credits Earned</label>
           <input type="number" class="form-input" id="input-credits" min="0" max="120" value="18">
         </div>
         <div class="form-group">
-          <label class="form-label">Total Credits Needed</label>
+          <label class="form-label" for="input-total-credits">Total Credits Needed</label>
           <input type="number" class="form-input" id="input-total-credits" min="1" max="120" value="24">
         </div>
       </div>
 
       <div class="modal-actions">
         <button class="btn hero-cta modal-save-btn" onclick="saveSettings(true)">
-          📥 Save & Download Custom Wallpaper (1080×1920)
+          Save settings & download background art
         </button>
         <div style="display:flex; gap:8px; width:100%;">
           <button class="btn" style="flex:1; justify-content:center;" onclick="saveSettings(false)">👁️ Apply & Preview</button>
@@ -934,7 +956,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </dialog>
 
   <script>
     // --- 1. STATE & STORAGE MANAGEMENT ---
@@ -950,10 +972,10 @@
       const clean = text.replace(/^"|"$/g, '');
       const el = document.getElementById('speech-text');
       if (el) {
-        el.innerHTML = clean.replace(/\n/g, '<br>');
+        el.textContent = clean;
       } else {
         const bubble = document.getElementById('speech-bubble');
-        if (bubble) bubble.innerHTML = clean.replace(/\n/g, '<br>');
+        if (bubble) bubble.textContent = clean;
       }
     }
 
@@ -965,6 +987,7 @@
         }
       } catch (e) {}
 
+      normalizeCredits();
       // Set input defaults
       document.getElementById('input-goal').value = state.goalTitle;
       document.getElementById('input-date').value = state.targetDateStr.split('T')[0];
@@ -985,8 +1008,9 @@
       }
       state.sprintTitle = document.getElementById('input-sprint').value.trim() || "Active Milestone";
       state.credits = Math.max(0, parseInt(document.getElementById('input-credits').value) || 0);
-      state.totalCredits = Math.max(1, parseInt(document.getElementById('input-total-credits').value) || 24);
+      state.totalCredits = Math.max(1, parseInt(document.getElementById('input-total-credits').value) || 1);
 
+      normalizeCredits();
       try {
         localStorage.setItem('quest_to_the_cap_state', JSON.stringify(state));
       } catch(e) {}
@@ -1021,10 +1045,14 @@
       document.getElementById('input-total-credits').value = state.totalCredits;
       applyStateToUI();
       closeSettings();
+      setEllieSpeech(`${curDays} days left!`);
       soundPop();
     }
 
     function applyStateToUI() {
+      const deadline = new Date(state.targetDateStr);
+      const target = Number.isFinite(deadline.getTime()) ? `dp("${deadline.toISOString().replace(/\.\d{3}Z$/, 'Z')}", auto)` : null;
+      document.getElementById('android-formula').value = target ? `$if(${target} > dp(), tf(${target}), "Goal day reached!")$` : 'Choose a valid deadline first.';
       document.getElementById('card-goal-title').innerText = `🎓 ${state.goalTitle.toUpperCase()}`;
       document.getElementById('gate-title-text').innerText = `Next Gate: ${state.sprintTitle}`;
       updateProgress();
@@ -1033,10 +1061,11 @@
 
     function openSettings() {
       soundPop();
-      document.getElementById('settings-modal').classList.add('open');
+      document.getElementById('settings-modal').showModal();
+      document.getElementById('input-goal').focus();
     }
     function closeSettings() {
-      document.getElementById('settings-modal').classList.remove('open');
+      document.getElementById('settings-modal').close();
     }
     function closeSettingsIfBackdrop(e) {
       if (e.target.id === 'settings-modal') closeSettings();
@@ -1170,6 +1199,8 @@
     function addCredit() {
       if (state.credits < state.totalCredits) {
         state.credits++;
+        try { localStorage.setItem('quest_to_the_cap_state', JSON.stringify(state)); } catch {}
+        document.getElementById('input-credits').value = state.credits;
         soundChime();
         spawnConfetti(28);
         updateProgress();
@@ -1179,10 +1210,12 @@
           setEllieSpeech(`CONGRATULATIONS!\n${state.goalTitle}\nCONFERRED!`);
           document.getElementById('ellie-img').src = 'assets/ellie-celebrate.webp';
         }
-      } else {
-        state.credits = Math.floor(state.totalCredits * 0.5);
-        updateProgress();
       }
+    }
+
+    function normalizeCredits() {
+      state.totalCredits = Math.max(1, Math.min(120, parseInt(state.totalCredits) || 1));
+      state.credits = Math.max(0, Math.min(state.totalCredits, parseInt(state.credits) || 0));
     }
 
     function updateProgress() {
@@ -1271,152 +1304,36 @@
 
     // --- 6. DYNAMIC 1080x1920 WALLPAPER EXPORTER (MATCHING SHOWCASE 1:1) ---
     function exportWallpaper() {
-      soundVictory();
-      const exportCanvas = document.createElement('canvas');
-      exportCanvas.width = 1080;
-      exportCanvas.height = 1920;
-      const ex = exportCanvas.getContext('2d');
+      const a = document.createElement('a');
+      a.href = 'assets/campus-night.webp';
+      a.download = 'quest-campus-night.webp';
+      a.click();
+    }
 
-      // Deep OLED dark gradient background
-      const grad = ex.createLinearGradient(0, 0, 0, 1920);
-      grad.addColorStop(0, '#0e0b24');
-      grad.addColorStop(0.5, '#080614');
-      grad.addColorStop(1, '#030208');
-      ex.fillStyle = grad;
-      ex.fillRect(0, 0, 1080, 1920);
+    function downloadWidget() {
+      const target = new Date(state.targetDateStr).getTime();
+      if (!Number.isFinite(target)) { openSettings(); return; }
+      const source = `// Quest to the Cap • offline Scriptable Lock Screen widget
+const deadline = new Date(${target});
+const widget = new ListWidget();
+widget.addText(${JSON.stringify(state.goalTitle)}).lineLimit = 1;
+if (deadline > new Date()) {
+  widget.addDate(deadline).applyTimerStyle();
+  widget.refreshAfterDate = deadline;
+} else { widget.addText("Goal day reached!"); }
+Script.setWidget(widget);
+Script.complete();`;
+      const blob = URL.createObjectURL(new Blob([source], {type:'text/javascript'}));
+      const a = document.createElement('a'); a.href = blob; a.download = 'Quest Countdown.js'; a.click();
+      setTimeout(() => URL.revokeObjectURL(blob), 60000);
+    }
 
-      // Stars
-      for (let i = 0; i < 200; i++) {
-        ex.fillStyle = ['#ffffff', '#ffd46c', '#65d7af', '#a69ebd'][Math.floor(Math.random() * 4)];
-        ex.globalAlpha = Math.random() * 0.7 + 0.3;
-        ex.beginPath();
-        ex.arc(Math.random() * 1080, Math.random() * 1920, Math.random() * 2.2 + 0.8, 0, Math.PI * 2);
-        ex.fill();
-      }
-      ex.globalAlpha = 1.0;
-
-      // Clock (Outfit font, large) & Date below
-      ex.fillStyle = '#ffffff';
-      ex.font = '300 160px "Outfit", sans-serif';
-      ex.textAlign = 'center';
-      ex.fillText(curTimeStr, 540, 340);
-
-      ex.fillStyle = 'rgba(255, 255, 255, 0.78)';
-      ex.font = '500 34px "Plus Jakarta Sans", sans-serif';
-      ex.fillText(curDateStr, 540, 405);
-
-      // Single Unified Frosted Glass Capsule
-      ex.fillStyle = 'rgba(35, 30, 62, 0.55)';
-      ex.beginPath();
-      ex.roundRect(80, 470, 920, 630, [40]);
-      ex.fill();
-      ex.lineWidth = 2.5;
-      ex.strokeStyle = 'rgba(255, 255, 255, 0.18)';
-      ex.stroke();
-
-      // Top Header Pill
-      ex.fillStyle = 'rgba(255, 255, 255, 0.12)';
-      ex.beginPath();
-      ex.roundRect(260, 515, 560, 56, [28]);
-      ex.fill();
-      ex.fillStyle = '#ffffff';
-      ex.font = '700 22px "Plus Jakarta Sans", sans-serif';
-      ex.fillText(`🎓 ${state.goalTitle.toUpperCase()}`, 540, 552);
-
-      // Inline Countdown Numbers
-      const cdText = `${String(curDays).padStart(3, '0')}  :  ${String(curHours).padStart(2, '0')}  :  ${String(curMins).padStart(2, '0')}`;
-      ex.fillStyle = '#ffffff';
-      ex.font = '700 90px "Outfit", sans-serif';
-      ex.fillText(cdText, 540, 690);
-
-      // Sublabels under numbers
-      ex.fillStyle = 'rgba(255, 255, 255, 0.55)';
-      ex.font = '600 20px "Plus Jakarta Sans", sans-serif';
-      ex.fillText('DAYS                HRS                MIN', 540, 735);
-
-      // Progress Bar
-      const pct = Math.round((state.credits / state.totalCredits) * 100);
-      ex.fillStyle = 'rgba(0, 0, 0, 0.45)';
-      ex.beginPath();
-      ex.roundRect(140, 810, 800, 34, [17]);
-      ex.fill();
-
-      const barGrad = ex.createLinearGradient(140, 0, 940, 0);
-      barGrad.addColorStop(0, '#65d7af');
-      barGrad.addColorStop(1, '#ffd46c');
-      ex.fillStyle = barGrad;
-      ex.beginPath();
-      ex.roundRect(140, 810, 800 * (state.credits / state.totalCredits), 34, [17]);
-      ex.fill();
-
-      // Progress text below bar
-      ex.fillStyle = 'rgba(255, 255, 255, 0.88)';
-      ex.font = '600 24px "Plus Jakarta Sans", sans-serif';
-      ex.fillText(`${state.credits} / ${state.totalCredits} Credits Earned • ${pct}%`, 540, 885);
-
-      // Integrated Next Gate Chip inside card
-      ex.fillStyle = 'rgba(95, 224, 219, 0.1)';
-      ex.beginPath();
-      ex.roundRect(140, 945, 800, 85, [42]);
-      ex.fill();
-      ex.lineWidth = 2;
-      ex.strokeStyle = 'rgba(95, 224, 219, 0.3)';
-      ex.stroke();
-
-      ex.fillStyle = '#8beee9';
-      ex.font = '700 24px "Plus Jakarta Sans", sans-serif';
-      ex.fillText(`⚔️ Next Gate: ${state.sprintTitle}`, 540, 998);
-
-      // Bottom Area: Ellie Mascot and Frosted Glass Speech Bubble
-      const ellieImg = new Image();
-      ellieImg.crossOrigin = 'anonymous';
-
-      ellieImg.onload = () => {
-        // Ellie on the lower left
-        ex.drawImage(ellieImg, 80, 1170, 420, 490);
-
-        // Translucent frosted glass speech bubble on the right
-        ex.save();
-        ex.fillStyle = 'rgba(35, 30, 62, 0.72)';
-        ex.beginPath();
-        ex.roundRect(510, 1260, 490, 220, [32]);
-        ex.fill();
-        ex.lineWidth = 2.5;
-        ex.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-        ex.stroke();
-
-        // Speech bubble pointer arrow pointing to Ellie
-        ex.fillStyle = 'rgba(35, 30, 62, 0.72)';
-        ex.beginPath();
-        ex.moveTo(512, 1370);
-        ex.lineTo(470, 1395);
-        ex.lineTo(512, 1420);
-        ex.closePath();
-        ex.fill();
-        ex.stroke();
-
-        // Dialogue text inside bubble
-        ex.fillStyle = '#ffffff';
-        ex.font = '700 32px "Plus Jakarta Sans", sans-serif';
-        ex.textAlign = 'left';
-        ex.fillText(`${curDays} days left!`, 550, 1335);
-        ex.fillText('You got this,', 550, 1385);
-        ex.fillText('Scholar!', 550, 1435);
-        ex.restore();
-
-        // Home indicator bar
-        ex.fillStyle = 'rgba(255, 255, 255, 0.6)';
-        ex.beginPath();
-        ex.roundRect(390, 1845, 300, 10, [5]);
-        ex.fill();
-
-        const link = document.createElement('a');
-        link.download = `quest-wallpaper-${state.goalTitle.toLowerCase().replace(/[^a-z0-9]/g, '-')}-1080x1920.png`;
-        link.href = exportCanvas.toDataURL('image/png');
-        link.click();
-      };
-
-      ellieImg.src = 'assets/ellie-welcome.webp';
+    for (const control of document.querySelectorAll('.phone-wrapper [onclick]')) {
+      control.tabIndex = 0;
+      control.setAttribute('role', 'button');
+      control.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); control.click(); }
+      });
     }
 
     // Initialize on load

@@ -15,7 +15,7 @@
 
 Traditional countdown timers induce **deadline anxiety** or fall victim to **Parkinson's Law**: when students see "142 Days Remaining," the goal feels either comfortably distant (inviting procrastination) or overwhelmingly vast (causing paralysis).
 
-**Quest to the Cap** transforms academic graduation into an elegant, modern mobile lock screen experience inspired by modern mobile OS design (iOS 18 and Material You). Instead of treating time as an abstract threat, this design reframes graduation into a glanceable **Live Activity countdown widget**, visual credit progress, and companion motivation from **Ellie** right on your smartphone.
+The page previews the deadline, credits and next milestone. Save the campus-night background separately from the timer. On iPhone, install the generated Scriptable widget. On Android, use the saved deadline formula in KLWP and select lock-screen placement if your device offers it. Neither setup requires leaving the webpage open. Changing the date on the site requires updating the installed script or formula.
 
 ---
 
@@ -49,7 +49,7 @@ Prototyped and built in collaboration with **Google AI (Gemini)** and modern gen
 
 * **Reverse Velocity Modeling:** Prompted Gemini with academic credit requirements and deadline dates to generate optimal pacing intervals, pacing checkpoints evenly across semesters to prevent end-of-term crunch.
 * **Modern Web Audio Chimes:** Generated a zero-dependency Web Audio API sound synthesizer that procedurally crafts soft, harmonic sine-wave chimes for milestone updates and companion interactions.
-* **High-Efficiency Visual Pipeline (FLUX.1 Schnell):** Deployed state-of-the-art FLUX.1 Schnell inference via Cloudflare Edge to generate high-fidelity, sub-2-second gothic castle arch and cosmic nebula wallpaper vistas specifically framed for OLED mobile lock screens.
+* **Artwork generation:** The web bundle serves a pre-generated `assets/campus-night.webp`. To generate a new candidate offline with FLUX.2 Pro, set `BFL_API_KEY` and run `node tools/generate-campus.mjs` from outside `dist/`. One invocation submits one paid job. Review the portrait at phone size before promoting it to both asset directories. No key or inference endpoint belongs in the browser.
 * **OLED Cognitive Ergonomics:** Engineered an ultra-low power dark theme (`#0b0918`, `#120e28`) utilizing high-translucency glassmorphism, 92% low-draw OLED pixels, and glowing mint (`#65d7af`) and gold (`#ffd46c`) accents for instant sunlight readability.
 * **Storybook Companion (Ellie):** Integrated high-resolution in-app illustrated artwork for **Ellie** (the cape-wearing elephant with her star wand), providing contextual study encouragement right above the lock screen home swipe bar.
 
@@ -59,11 +59,11 @@ Prototyped and built in collaboration with **Google AI (Gemini)** and modern gen
 
 Visit the **[Live Interactive Demo (lock.pixelthis.app)](https://lock.pixelthis.app/)**:
 
-* **📸 1-Click Wallpaper Exporter:** Renders a high-resolution 1080x1920 PNG lock screen wallpaper via HTML5 canvas with the live countdown and high-res Ellie, downloading it instantly for your device.
+* **Wallpaper download:** A 1080×1920 WebP with room for the system clock. No time, date or credit count is baked into it.
 * **🔊 Procedural Ambient Audio:** In-browser Web Audio synthesizer for pleasant harmonic chimes without loading external audio files.
 * **⭐ Interactive Progress Leveling:** Tap the progress bar to advance credits, play chime audio, and trigger particle confetti.
 * **🐘 Mascot Companion:** Tap mascot Ellie for contextual study encouragement, reactive animations, and expression changes.
-* **✨ Dynamic Island Live Activity:** Sleek status pill tracking days to the target deadline.
+* **Preview status pill:** Tracks days to the target in the browser. This is not an installed iOS Live Activity.
 
 ---
 
